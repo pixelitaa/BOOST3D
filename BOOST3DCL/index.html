@@ -46,18 +46,9 @@
                 const cm3 = Math.abs(volume) / 1000;
                 const grams = cm3 * density;
 
-                // --- LÓGICA DE NEGOCIO BOOST3D ---
-                
-                // 1. Costo real del material (según lo que pusiste en el HTML)
                 const costoMaterial = grams * pricePerGram;
-                
-                // 2. +40% por gestión de compra/logística
                 const conGestion = costoMaterial * 1.40;
-                
-                // 3. +300% de Ganancia (Multiplicar por 4 el valor con gestión)
                 const precioSubtotal = conGestion * 2;
-                
-                // 4. Factor de Velocidad (Recargo final por urgencia)
                 const finalPrice = precioSubtotal * speedFactor;
 
                 if(volText) volText.innerText = cm3.toFixed(2);
@@ -99,21 +90,21 @@
         matSelect.onchange = () => updateUI(currentGeometry);
         speedSelect.onchange = () => updateUI(currentGeometry);
 
-        // --- FUNCIONES DE PAGO Y FORMULARIO ---
         window.iniciarPago = function() {
             document.getElementById('datos-cliente').style.display = 'block';
             document.getElementById('btn-continuar').style.display = 'none';
             document.getElementById('datos-cliente').scrollIntoView({ behavior: 'smooth' });
         };
 
-        window.finalizarYEnviar = function() {
+        // --- FUNCIÓN INTEGRADA CON VERCEL API ---
+        window.finalizarYEnviar = async function() {
             const campos = ['nombre', 'rut', 'telefono', 'email', 'direccion'];
             let faltanDatos = false;
 
             campos.forEach(id => {
                 const el = document.getElementById(id);
                 if (!el || !el.value) {
-                    if(el) el.style.borderColor = '#ff00ff'; // Feedback visual en Magenta
+                    if(el) el.style.borderColor = '#ff00ff';
                     faltanDatos = true;
                 }
             });
@@ -123,12 +114,43 @@
                 return;
             }
 
-            // Aquí el alert que mencionamos antes para el link de pago
-            const precio = document.getElementById('price-display').innerText;
-            alert("¡Pedido confirmado por " + precio + "! Redirigiendo a Mercado Pago...");
-            
-            // Reemplaza esto con tu link real de Mercado Pago
-            window.location.href = "link.mercadopago.cl/boost3d"; 
+            // 1. Obtener el precio y limpiar el formato (ej: "$15.500" -> 15500)
+            const precioRaw = document.getElementById('price-display').innerText;
+            const precioNumerico = parseInt(precioRaw.replace(/\D/g, ''));
+
+            // 2. Cambiar estado del botón
+            const btnFinalizar = document.querySelector('#datos-cliente button');
+            const textoOriginal = btnFinalizar.innerText;
+            btnFinalizar.innerText = "Procesando pago...";
+            btnFinalizar.disabled = true;
+
+            try {
+                // 3. Llamar a la API de Vercel que creamos anteriormente
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        unit_price: precioNumerico,
+                        title: "Pedido Impresión 3D - BOOST3D",
+                        // Aquí podrías enviar también el email o nombre si lo necesitas en el backend
+                        email: document.getElementById('email').value 
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.init_point) {
+                    // Redirigir al Checkout dinámico de Mercado Pago
+                    window.location.href = data.init_point;
+                } else {
+                    throw new Error("No se pudo generar el pago.");
+                }
+            } catch (err) {
+                console.error("Error al conectar con la API:", err);
+                alert("Hubo un error al generar el pago. Revisa tu conexión.");
+                btnFinalizar.innerText = textoOriginal;
+                btnFinalizar.disabled = false;
+            }
         };
     };
 })();
