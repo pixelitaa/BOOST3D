@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOST3D</title>
+
+   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<script>
+(function() {
+    window.onload = function() {
+        const input = document.getElementById('stl-input');
+        const matSelect = document.getElementById('material-select');
+        const speedSelect = document.getElementById('speed-select');
+        
+        const volText = document.getElementById('volume-display');
+        const weightText = document.getElementById('weight-display');
+        const priceText = document.getElementById('price-display');
+        const panel = document.getElementById('result-area');
+
+        let currentGeometry = null;
+
+        // --- FUNCIÓN DE CÁLCULO ACTUALIZADA ---
+        const updateUI = (geometry) => {
+            if (!geometry) return;
+
+            try {
+                const matData = matSelect.value.split('|');
+                const density = parseFloat(matData[0]);
+                const pricePerGram = parseFloat(matData[1]);
+                const speedFactor = parseFloat(speedSelect.value);
+
+                let volume = 0;
+                const pos = geometry.attributes.position.array;
+                for (let i = 0; i < pos.length; i += 9) {
+                    let v1 = new THREE.Vector3(pos[i], pos[i+1], pos[i+2]);
+                    let v2 = new THREE.Vector3(pos[i+3], pos[i+4], pos[i+5]);
+                    let v3 = new THREE.Vector3(pos[i+6], pos[i+7], pos[i+8]);
+                    volume += (v1.dot(v2.cross(v3))) / 6;
+                }
+
+                const cm3 = Math.abs(volume) / 1000;
+                const grams = cm3 * density;
+
+                // --- LÓGICA DE NEGOCIO BOOST3D ---
+                
+                // 1. Costo real del material (según lo que pusiste en el HTML)
+                const costoMaterial = grams * pricePerGram;
+                
+                // 2. +40% por gestión de compra/logística
+                const conGestion = costoMaterial * 1.40;
+                
+                // 3. +300% de Ganancia (Multiplicar por 4 el valor con gestión)
+                const precioSubtotal = conGestion * 2;
+                
+                // 4. Factor de Velocidad (Recargo final por urgencia)
+                const finalPrice = precioSubtotal * speedFactor;
+
+                if(volText) volText.innerText = cm3.toFixed(2);
+                if(weightText) weightText.innerText = grams.toFixed(1);
+                if(priceText) priceText.innerText = "$" + Math.round(finalPrice).toLocaleString('es-CL');
+                
+                panel.style.display = 'block';
+            } catch (err) {
+                console.error("Error en el cálculo:", err);
+            }
+        };
+
+        // --- EVENTO SUBIR ARCHIVO ---
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = function(event) {
+                try {
+                    if (typeof THREE === 'undefined' || !THREE.STLLoader) {
+                        alert("Error: Librería Three.js no encontrada.");
+                        return;
+                    }
+                    const loader = new THREE.STLLoader();
+                    currentGeometry = loader.parse(event.target.result);
+                    updateUI(currentGeometry);
+                    
+                    document.getElementById('datos-cliente').style.display = 'none';
+                    document.getElementById('btn-continuar').style.display = 'block';
+                } catch (err) {
+                    console.error("Error al procesar STL:", err);
+                    alert("El archivo STL no es válido.");
+                }
+            };
+        });
+
+        matSelect.onchange = () => updateUI(currentGeometry);
+        speedSelect.onchange = () => updateUI(currentGeometry);
+
+        // --- FUNCIONES DE PAGO Y FORMULARIO ---
+        window.iniciarPago = function() {
+            document.getElementById('datos-cliente').style.display = 'block';
+            document.getElementById('btn-continuar').style.display = 'none';
+            document.getElementById('datos-cliente').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        window.finalizarYEnviar = function() {
+            const campos = ['nombre', 'rut', 'telefono', 'email', 'direccion'];
+            let faltanDatos = false;
+
+            campos.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el || !el.value) {
+                    if(el) el.style.borderColor = '#ff00ff'; // Feedback visual en Magenta
+                    faltanDatos = true;
+                }
+            });
+
+            if (faltanDatos) {
+                alert("Por favor, completa todos los campos de envío.");
+                return;
+            }
+
+            // Aquí el alert que mencionamos antes para el link de pago
+            const precio = document.getElementById('price-display').innerText;
+            alert("¡Pedido confirmado por " + precio + "! Redirigiendo a Mercado Pago...");
+            
+            // Reemplaza esto con tu link real de Mercado Pago
+            window.location.href = "link.mercadopago.cl/boost3d"; 
+        };
+    };
+})();
+</script>
+
+<body>
+
+   <header class="navbar">
+    <div class="logo">BOOST<b style="color: var(--primary-color);">3D</b></div>
+    <nav class="nav-links">
+        <a href="#tecnologias" class="nav-btn">Tecnologías</a>
+        <a href="#materiales" class="nav-btn">Materiales</a>
+        <a href="#nosotros" class="nav-btn">Nosotros</a>
+        <a href="#cotizador-container" class="btn-cta">Cotizar Proyecto</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="overlay"></div> <div class="hero-content">
+        <h1>TRANSFORMA TUS IDEAS EN PRODUCTOS</h1>
+        <p>Prototipado rápido con precisión y producción FDM.</p>
+        <div class="hero-btns">
+            <a href="#cotizador-container" class="btn-cta">Sube tu archivo aquí</a>
+        </div>
+    </div>
+</section>
+
+    <section id="tecnologias" class="servicios-section">
+    <div class="container">
+        <span class="subtitle">Nuestras Capacidades</span>
+        <h2>Tecnologías de Fabricación</h2>
+        
+        <div class="servicios-grid">
+                <div class="panel">
+                <div class="panel-image">
+        <img src="img/fdm.jpg" alt="Servicio">
+    </div>
+                <h3>FDM - Filamento</h3>
+                <p>Producción robusta con materiales personalizados según sus requerimientos de resistencia mecánica y química.</p>
+                <ul class="panel-features">
+                    <li>Variedad de materiales de grado industrial.</li>
+                    <li>Volumen de fabricación alto</li>
+                </ul>
+            </div>
+           
+             <div class="panel">
+           
+                 <div class="panel-image">
+        <img src="img/cad.jpg" alt="Servicio">
+        </div>
+                <h3>Diseño 3D - CAD</h3>
+                <p>Nosotros nos encargamos del diseño, sean piezas originales, repuestos o moldes.</p>
+                <ul class="panel-features">
+                    <li>Entrega de archivos editables y variedad de formatos</li>
+                    <li>Modelado de archivos para planimetria, fabricación o uso digital.</li>
+                </ul>
+            </div>
+            
+              
+                 <div class="panel">
+                 <div class="panel-image">
+        <img src="img/scan.jpg" alt="Servicio">
+        </div>
+                <h3>Escaner 3D</h3>
+                <p>Escaneo de alta calidad para la fabricacion de repuestos o replicas de todos los tamaños.</p>
+                <ul class="panel-features">
+                    <li>Entrega de digitalización y limpieza de escaneo.</li>
+                    <li>Servicio de escaneo en sitio.</li>
+                </ul>
+            </div>
+        
+    </div>
+</section>
+
+<section id="materiales" style="padding: 60px 10px; text-align: center; background: #0a0a0c;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <span style="color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: bold;">Catálogo Técnico</span>
+        <h2 style="color: white; font-size: 2.5rem; margin: 15px 0 40px 0; font-weight: 800;">Polímeros de Alto Rendimiento</h2>
+        
+        <p style="color: #a1a1a6; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+            Seleccionamos materiales certificados para garantizar la estabilidad térmica y mecánica de tus piezas. Desde el estándar PLA+ hasta Nylon reforzado con fibra de carbono.
+        </p>
+    </div>
+</section>
+<div class="materials-panels">
+
+<div class="material-card">
+    <div class="card-header"><h3>PLA+</h3><span class="tag">Estándar</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 40%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>50°C</strong></div>
+    </div>
+    <p>Alta precisión y facilidad de uso. Perfecto para prototipos rápidos y modelos estéticos.</p>
+</div>
+
+<div class="material-card">
+    <div class="card-header"><h3>PETG</h3><span class="tag">Versátil</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 65%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>75°C</strong></div>
+    </div>
+    <p>El todoterreno. Excelente adherencia entre capas y buena resistencia química.</p>
+</div>
+
+<div class="material-card">
+    <div class="card-header"><h3>TPU</h3><span class="tag">Flexible</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 30%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>60°C</strong></div>
+    </div>
+    <p>Material elástico tipo caucho. Ideal para sellos, juntas y carcasas protectoras.</p>
+</div>
+
+<div class="material-card">
+    <div class="card-header"><h3>ABS</h3><span class="tag">Técnico</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 75%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>100°C</strong></div>
+    </div>
+    <p>Alta resistencia al impacto y al calor. Se puede lijar y post-procesar fácilmente.</p>
+</div>
+
+<div class="material-card">
+    <div class="card-header"><h3>NYLON</h3><span class="tag">Industrial</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 85%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>120°C</strong></div>
+    </div>
+    <p>Extrema resistencia al desgaste y baja fricción. Perfecto para engranajes y piezas mecánicas finales.</p>
+</div>
+
+<div class="material-card premium">
+    <div class="card-header"><h3>PLA-CF</h3><span class="tag gold">Premium</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 90%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>55°C</strong></div>
+    </div>
+    <p>Reforzado con fibra de carbono. Mayor rigidez estructural y un acabado mate profesional impecable.</p>
+</div>
+
+<div class="material-card premium">
+    <div class="card-header"><h3>PETG-CF</h3><span class="tag gold">Industrial</span></div>
+    <div class="stat-group">
+        <div class="stat"><span>Dureza:</span> <div class="bar"><div class="fill" style="width: 95%"></div></div></div>
+        <div class="stat"><span>Temp:</span> <strong>80°C</strong></div>
+    </div>
+    <p>Máximo rendimiento estructural y estabilidad térmica para aplicaciones de ingeniería exigentes.</p>
+</div>
+
+            </div>
+    </div>
+</section>
+<div id="cotizador-container">
+    <div class="cotizador-header">
+        <h2>Cotiza tu archivo STL</h2>
+    </div>
+
+    <div class="cotizador-body">
+        <div class="input-group">
+            <label class="input-label">Material Seleccionado</label>
+            <select id="material-select" class="select-custom">
+                <option value="1.1|18">PLA+</option>
+                <option value="1.1|25">PETG</option>
+                <option value="1.1|30">TPU Flexible</option>
+                <option value="1.1|35">ABS</option>
+                <option value="1.1|40">Nylon</option>
+                <option value="1.1|25">PLA-CF</option>
+                <option value="1.1|55">PETG-CF</option>
+                <option value="1.1|60">Nylon-CF</option>          
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label class="input-label">Velocidad de Entrega</label>
+            <select id="speed-select" class="select-custom">
+                <option value="1">Estándar (3-5 días)</option>
+                <option value="1.3">Rápida (48h) +30%</option>
+                <option value="1.6">Prioridad Express (24h) +60%</option>
+            </select>
+        </div>
+
+        <button onclick="document.getElementById('stl-input').click()" 
+                style="width: 100%; padding: 15px; border-radius: 8px; border: 2px dashed #444; background: transparent; color: white; cursor: pointer; font-weight: 600;">
+            + Subir archivo .STL
+        </button>
+        <input type="file" id="stl-input" accept=".stl" style="display: none;">
+
+       <div id="result-area" style="display: none;">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-label">Peso Estimado</span>
+            <span class="stat-number"><span id="weight-display">0</span>g</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Volumen Total</span>
+            <span class="stat-number"><span id="volume-display">0</span> cm³</span>
+        </div>
+    </div>
+
+    <div class="price-section">
+        <span class="stat-label">Total a Pagar</span>
+        <span class="price-total" id="price-display">$0</span>
+    </div>
+    
+    <button id="btn-continuar" onclick="iniciarPago()" style="width: 100%; margin-top: 20px; padding: 15px; background: var(--primary-color); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; color: black;">
+        CONTINUAR AL PAGO
+    </button>
+
+    <div id="datos-cliente" style="display: none; margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); text-align: left;">
+        <p style="color: white; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Datos de Envío y Contacto</p>
+        
+        <input type="text" id="nombre" placeholder="Nombre Completo" style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #1c1c1f; color: white; box-sizing: border-box;">
+        
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <input type="text" id="rut" placeholder="RUT (12.345.678-9)" style="width: 50%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #1c1c1f; color: white; box-sizing: border-box;">
+            <input type="tel" id="telefono" placeholder="WhatsApp +569..." style="width: 50%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #1c1c1f; color: white; box-sizing: border-box;">
+        </div>
+
+        <input type="email" id="email" placeholder="Correo Electrónico" style="width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #333; background: #1c1c1f; color: white; box-sizing: border-box;">
+        
+        <input type="text" id="direccion" placeholder="Calle, Número, Depto, Comuna" style="width: 100%; padding: 12px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #333; background: #1c1c1f; color: white; box-sizing: border-box;">
+        
+        <button onclick="finalizarYEnviar()" style="width: 100%; padding: 15px; background: #28a745; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1rem;">
+            CONFIRMAR PEDIDO
+        </button>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+
+<section class="whatsapp-footer-section">
+    <div class="whatsapp-container-pro">
+        <span style="color: #ff00a6; text-transform: uppercase; font-weight: 800; letter-spacing: 2px; font-size: 0.8rem;">¿Necesitas algo más?</span>
+        <h2>¿Necesitas otro de nuestros servicios?</h2>
+        <p>Si necesitas servicio de Modelado 3D CAD o Servicio de Escaner 3D contiza directamente con nosotros.</p>
+        
+        <a href="https://wa.me/569XXXXXXXX?text=Hola%20BOOST3D!%20Necesito%20cotizar%20un%20proyecto%20especial." 
+           target="_blank" 
+           class="btn-whatsapp-final">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 28px;" alt="WhatsApp Icon">
+            COTIZA AL WHATSAPP
+        </a>
+    </div>
+</section>
+
+<section id="nosotros" style="background: #000; padding: 100px 0; color: #fff; font-family: -apple-system, system-ui, sans-serif;">
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        
+        <div style="margin-bottom: 60px;">
+            <span style="color: var(--primary-color); font-weight: 700; letter-spacing: 3px; font-size: 0.8rem; text-transform: uppercase;">Excelencia en Manufactura</span>
+            <h2 style="font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-top: 15px;">
+                Transformamos archivos digitales <br> en <span style="color: var(--primary-color);">soluciones industriales.</span>
+            </h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+            
+            <div>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #a1a1a6; margin-bottom: 30px;">
+                    En <strong style="color: #fff;">BOOST 3D SPA</strong>, no solo operamos máquinas. Somos un centro de diseño e innovación dedicado a la fabricación aditiva de alta fidelidad en Chile, Nuestra mision es impulsar todo tipo de empresas con servicios de prototipado, producción y repuestos mediante la fabricación digital rapida y local.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #a1a1a6; margin-bottom: 40px;">
+                    Nuestra infraestructura nos permite procesar desde prototipos rápidos hasta piezas finales con materiales reforzados con fibra de carbono y polímeros de grado aeroespacial. Combinamos pasión por la tecnología con precisión y una logística ágil para cumplir con los plazos más exigentes del mercado.
+                </p>
+
+                <div style="display: flex; gap: 40px; border-top: 1px solid #222; padding-top: 40px;">
+                    <div>
+                        <span style="display: block; font-size: 2rem; font-weight: 800; color: #fff;">99.8%</span>
+                        <span style="color: #666; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Precisión Dimensional</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2rem; font-weight: 800; color: #fff;">+500</span>
+                        <span style="color: #666; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">Piezas Fabricadas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; gap: 20px;">
+                <div style="background: #0a0a0c; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color);">Materiales de Ingeniería</h4>
+                    <p style="color: #888; font-size: 0.95rem; margin: 0;">Trabajamos con PLA-CF, PETG-CF, Nylon y TPU para aplicaciones de alto estrés mecánico.</p>
+                </div>
+                <div style="background: #0a0a0c; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color);">Post-Procesado Pro</h4>
+                    <p style="color: #888; font-size: 0.95rem; margin: 0;">Ofrecemos acabados superficiales, roscas metálicas insertadas y ensamblaje técnico.</p>
+                </div>
+                <div style="background: #0a0a0c; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a;">
+                    <h4 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color);">Logística Integrada</h4>
+                    <p style="color: #888; font-size: 0.95rem; margin: 0;">Despacho prioritario a todo Chile con seguimiento en tiempo real de tu producción.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+        </div>
+    </div>
+</section>
+<a href="https://wa.me/56973825650" target="_blank" 
+   style="position: fixed; bottom: 30px; right: 30px; background: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); text-decoration: none; z-index: 999;">
+   <span style="display: none;">WhatsApp</span>
+   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 35px;">
+</a>
+</body>
+</html>
