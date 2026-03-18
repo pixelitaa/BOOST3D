@@ -24,7 +24,7 @@
 
         let currentGeometry = null;
 
-        // --- FUNCIÓN DE CÁLCULO ACTUALIZADA ---
+        // --- Función del cotizador, cm3 a g + costo material + costo de velocidad ---
         const updateUI = (geometry) => {
             if (!geometry) return;
 
@@ -61,7 +61,7 @@
             }
         };
 
-        // --- EVENTO SUBIR ARCHIVO ---
+        // --- evento, subir archivo solo soporta stl ---
         input.addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -96,7 +96,7 @@
             document.getElementById('datos-cliente').scrollIntoView({ behavior: 'smooth' });
         };
 
-        // --- FUNCIÓN INTEGRADA CON VERCEL API ---
+        // --- intergación con vercel para comunicar pagos con la api ---
         window.finalizarYEnviar = async function() {
             const campos = ['nombre', 'rut', 'telefono', 'email', 'direccion'];
             let faltanDatos = false;
@@ -114,18 +114,18 @@
                 return;
             }
 
-            // 1. Obtener el precio y limpiar el formato (ej: "$15.500" -> 15500)
+            //  Obtener el precio 
             const precioRaw = document.getElementById('price-display').innerText;
             const precioNumerico = parseInt(precioRaw.replace(/\D/g, ''));
 
-            // 2. Cambiar estado del botón
+            //  Cambiar estado del botón
             const btnFinalizar = document.querySelector('#datos-cliente button');
             const textoOriginal = btnFinalizar.innerText;
             btnFinalizar.innerText = "Procesando pago...";
             btnFinalizar.disabled = true;
 
             try {
-                // 3. Llamar a la API de Vercel que creamos anteriormente
+                // Llamar a api via vercel 
                 const response = await fetch('/api/checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -140,7 +140,7 @@
                 const data = await response.json();
 
                 if (data.init_point) {
-                    // Redirigir al Checkout dinámico de Mercado Pago
+                    // Redirigir al cobro via mercado pago
                     window.location.href = data.init_point;
                 } else {
                     throw new Error("No se pudo generar el pago.");
@@ -164,14 +164,14 @@
         <a href="#tecnologias" class="nav-btn">Tecnologías</a>
         <a href="#materiales" class="nav-btn">Materiales</a>
         <a href="#nosotros" class="nav-btn">Nosotros</a>
-        <a href="#cotizador-container" class="btn-cta">Cotizar Proyecto</a>
+        <a href="#cotizador-container" class="btn-cta">Cotizar Proyectos</a>
     </nav>
 </header>
 
 <section class="hero">
     <div class="overlay"></div> <div class="hero-content">
         <h1>TRANSFORMA TUS IDEAS EN PRODUCTOS</h1>
-        <p>Prototipado rápido con precisión y producción FDM.</p>
+        <p>Prototipado rápido con precisión y producción FDM (Modelado por deposición fundida).</p>
         <div class="hero-btns">
             <a href="#cotizador-container" class="btn-cta">Sube tu archivo aquí</a>
         </div>
@@ -387,9 +387,9 @@
     <div class="whatsapp-container-pro">
         <span style="color: #ff00a6; text-transform: uppercase; font-weight: 800; letter-spacing: 2px; font-size: 0.8rem;">¿Necesitas algo más?</span>
         <h2>¿Necesitas otro de nuestros servicios?</h2>
-        <p>Si necesitas servicio de Modelado 3D CAD o Servicio de Escaner 3D contiza directamente con nosotros.</p>
+        <p>Si necesitas servicio de Modelado 3D CAD o Servicio de Escaner 3D cotiza directamente con nosotros.</p>
         
-        <a href="https://wa.me/569XXXXXXXX?text=Hola%20BOOST3D!%20Necesito%20cotizar%20un%20proyecto%20especial." 
+        <a href="https://wa.me/56973825650?text=Hola%20BOOST3D!%20Necesito%20cotizar%20un%20proyecto%20especial." 
            target="_blank" 
            class="btn-whatsapp-final">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 28px;" alt="WhatsApp Icon">
@@ -433,15 +433,15 @@
             <div style="display: grid; gap: 20px;">
                 <div style="background: #0a0a0c; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a;">
                     <h4 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color);">Materiales de Ingeniería</h4>
-                    <p style="color: #888; font-size: 0.95rem; margin: 0;">Trabajamos con PLA-CF, PETG-CF, Nylon y TPU para aplicaciones de alto estrés mecánico.</p>
+                    <p style="color: #888; font-size: 0.95rem; margin: 0; text-align: justify; hyphens: auto;">Trabajamos con PLA-CF, PETG-CF, Nylon y TPU para aplicaciones de alto estrés mecánico.</p>
                 </div>
                 <div style="background: #0a0a0c; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a;">
                     <h4 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color);">Post-Procesado Pro</h4>
-                    <p style="color: #888; font-size: 0.95rem; margin: 0;">Ofrecemos acabados superficiales, roscas metálicas insertadas y ensamblaje técnico.</p>
+                    <p style="color: #888; font-size: 0.95rem; margin: 0; text-align: justify; hyphens: auto;">Ofrecemos acabados superficiales, roscas metálicas insertadas y ensamblaje técnico.</p>
                 </div>
                 <div style="background: #0a0a0c; padding: 30px; border-radius: 15px; border: 1px solid #1a1a1a;">
                     <h4 style="font-size: 1.2rem; margin-bottom: 10px; color: var(--primary-color);">Logística Integrada</h4>
-                    <p style="color: #888; font-size: 0.95rem; margin: 0;">Despacho prioritario a todo Chile con seguimiento en tiempo real de tu producción.</p>
+                    <p style="color: #888; font-size: 0.95rem; margin: 0; text-align: justify; hyphens: auto;">Despacho prioritario a todo Chile con seguimiento en tiempo real de tu producción.</p>
                 </div>
             </div>
 
