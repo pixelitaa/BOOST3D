@@ -568,6 +568,11 @@ body {
         font-size: 1.2rem !important; /* Logo más pequeño en móvil */
     }
 
+    .logo img {
+    max-height: 30px; 
+    width: auto;
+}
+
     .nav-links {
         gap: 8px !important; /* Reducimos el espacio entre links */
     }
