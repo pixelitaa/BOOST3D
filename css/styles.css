@@ -30,7 +30,7 @@ body {
 }
 
 .logo {
-    font-size: 2rem;
+    font-size: 5rem;
     color: white;
     cursor: pointer;
 }
@@ -82,19 +82,23 @@ body {
     padding-right: 5%;
     display: flex;
     justify-content: center;
-    align-items: center; /* Centrado vertical */
+    align-items: center; 
     min-height: 80vh;
     position: relative;
     
-    /* LA IMAGEN VA AQUÍ - Asegúrate que el archivo se llame unnamed.jpg */
-    /* El cambio es: img/fondo.jpg */
-    background-image:  url('/fondo.jpg.png');
+    /* Imagen de fondo */
+    background-image: url('/fondo.jpg.png');
     background-color: #000000;
-    background-size: 100%;
-    background-size: 100%;
+
+    /* CAMBIO CLAVE: Usa 'cover' para que la imagen siempre llene el espacio */
+    background-size: cover; 
+    
     background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+
+    /* IMPORTANTE: El fixed suele dar problemas en móviles, 
+       lo ideal es dejarlo así para PC y quitarlo en el @media que hicimos antes */
+    background-attachment: fixed; 
 }
 
 .hero-content {
@@ -548,52 +552,67 @@ body {
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
 
-/* --- OPTIMIZACIÓN PARA MÓVILES (Celulares y Tablets) --- */
 @media (max-width: 768px) {
-    
-    /* 1. Ajuste de la sección Nosotros (de 2 columnas a 1) */
-    #nosotros .grid-container, 
-    #nosotros > div > div:nth-child(2) { 
+    /* --- 1. BARRA DE NAVEGACIÓN --- */
+    nav {
+        padding: 15px 5% !important; /* Espacio lateral proporcional */
+        flex-direction: column !important; /* Logo arriba, menú abajo */
+        gap: 15px;
+        text-align: center;
+    }
+
+    nav ul {
+        gap: 15px !important;
+        padding: 0;
+        justify-content: center;
+    }
+
+    /* --- 2. IMAGEN DE PORTADA (HERO) --- */
+    .hero {
+        height: 80vh !important; /* Que no sea tan alta en móvil */
+        background-attachment: scroll !important; /* El efecto 'parallax' falla en móviles */
+        background-position: center center !important;
+        padding: 0 20px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+
+    /* --- 3. SECCIÓN ¿QUÉ HACEMOS? (TARJETAS) --- */
+    section#servicios, #que-hacemos {
+        padding: 60px 0 !important;
+    }
+
+    /* Contenedor principal que envuelve las tarjetas */
+    .servicios-grid, .container-tarjetas {
         display: flex !important;
         flex-direction: column !important;
-        gap: 40px !important;
+        align-items: center !important; /* CENTRA LAS TARJETAS */
+        justify-content: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        gap: 30px !important;
+        padding: 0 20px !important; /* Margen de seguridad a los lados */
     }
 
-    /* 2. Ajuste de los Paneles de Servicios */
-    .servicios-grid {
-        display: flex !important;
-        flex-direction: column !important; /* Se apilan uno sobre otro */
-        align-items: center !important;
-        gap: 25px !important;
-        width: 95% !important;
-    }
-
+    /* La tarjeta individual */
     .panel {
-        width: 100% !important; /* Ocupan todo el ancho disponible */
+        width: 100% !important; /* Ocupa el ancho del contenedor */
+        max-width: 350px !important; /* Pero que no sea gigante */
+        margin: 0 auto !important; /* Centrado automático */
+        box-sizing: border-box !important; /* Para que el padding no la ensanche */
+    }
+
+    /* --- 4. SECCIÓN NOSOTROS --- */
+    #nosotros > div {
         max-width: 100% !important;
-        margin: 0 auto;
-    }
-
-    /* 3. Ajuste de Imágenes de Banner */
-    .panel-image, .panel-banner-top {
-        height: 150px !important; /* Un poco más altas para que luzcan en móvil */
-    }
-
-    /* 4. Textos más legibles */
-    h2 {
-        font-size: 1.8rem !important; /* Títulos menos gigantes */
-        text-align: center;
-    }
-    
-    p {
-        font-size: 1rem !important;
-        text-align: left !important; /* El justificado a veces se ve mal en pantallas muy estrechas */
-    }
-
-    /* 5. Los stats (99.8% y +500) */
-    #nosotros div[style*="display: flex; gap: 40px"] {
-        flex-direction: column !important;
-        gap: 20px !important;
-        text-align: center;
+        padding: 0 20px !important;
     }
 }
