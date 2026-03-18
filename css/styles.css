@@ -44,6 +44,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px; 
+    flex-wrap: nowrap; /* Evita que los botones salten a una segunda línea */
 }
 
 .nav-btn {
@@ -574,18 +575,25 @@ body {
 }
 
     .nav-links {
-        gap: 8px !important; /* Reducimos el espacio entre links */
+        gap: 5px !important; /* Reducimos el espacio al mínimo */
     }
 
+    /* OPCIONAL: Ocultar botones menos importantes para salvar espacio */
+    /* Si tienes un botón de "Nosotros" o "Inicio" que no es crítico en móvil: */
+    .nav-btn:nth-child(1), .nav-btn:nth-child(2) {
+        display: none !important; 
+    }
+    
+    /* Aseguramos que los botones que quedan no tengan márgenes internos gigantes */
     .nav-btn {
-        font-size: 0.7rem !important; /* Letra más pequeña para que quepa todo */
         padding: 5px 8px !important;
+        font-size: 0.75rem !important;
     }
 
     .btn-cta {
-        padding: 5px 10px !important;
-        font-size: 0.65rem !important;
-        margin-left: 2px !important;
+        padding: 6px 10px !important;
+        font-size: 0.7rem !important;
+        margin-left: 0 !important;
     }
 
     /* --- 2. IMAGEN DE PORTADA (HERO) --- */
