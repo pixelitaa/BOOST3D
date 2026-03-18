@@ -560,80 +560,74 @@ body {
 
 
 @media (max-width: 768px) {
-    /* 1. ARREGLO NAVBAR: Para que aparezcan todos los botones */
+    /* 1. ARREGLO NAVBAR: Ajuste fino para visibilidad total */
     .navbar {
-        padding: 0 8px !important; /* Ganamos espacio en los bordes */
+        padding: 0 8px !important;
     }
 
     .logo {
-        font-size: 1rem !important; /* Reducimos el logo para que entren los botones al lado */
+        font-size: 1rem !important;
         margin-right: 5px !important;
     }
 
     .nav-links {
-        gap: 2px !important; /* Espacio mínimo para que quepan todos en una línea */
-        width: auto !important;
+        gap: 3px !important; /* Un poco más de aire que antes pero controlado */
     }
 
     .nav-btn {
-        font-size: 0.65rem !important; /* Letra pequeña para que nada se desborde */
+        font-size: 0.65rem !important;
         padding: 4px 6px !important;
         white-space: nowrap !important;
     }
 
     .btn-cta {
-        font-size: 0.65rem !important;
-        padding: 6px 10px !important;
-        margin-left: 2px !important;
+        font-size: 0.62rem !important;
+        padding: 6px 8px !important;
     }
 
-    /* 2. ARREGLO TARJETAS: Para que no se salgan por los lados */
-    .servicios-grid, .materials-panels {
+    /* 2. ARREGLO TARJETAS (Servicios, Materiales y NOSOTROS) */
+    .servicios-grid, 
+    .materials-panels, 
+    #nosotros, 
+    .nosotros-section,
+    .whatsapp-container-pro {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         width: 100% !important;
-        padding: 0 15px !important; /* Margen de seguridad */
+        max-width: 100% !important;
+        padding: 20px 15px !important; /* Espacio de seguridad lateral */
+        margin: 0 auto !important;
         box-sizing: border-box !important;
+        overflow: hidden !important;
     }
 
-    .panel, .material-card {
+    /* Aseguramos que los hijos de "Nosotros" no tengan anchos fijos */
+    #nosotros > div, 
+    .nosotros-content,
+    .panel, 
+    .material-card {
         width: 100% !important;
         max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        margin: 0 0 20px 0 !important;
         box-sizing: border-box !important;
     }
 
-    /* 3. ARREGLO HERO: Evitar que la imagen se vea "gigante" o deformada en iPhone */
+    /* 3. ARREGLO HERO: Estabilidad visual */
     .hero {
         background-attachment: scroll !important;
-        padding-top: 80px !important;
-    }
-    /* --- ARREGLO ESPECÍFICO SECCIÓN NOSOTROS --- */
-    #nosotros, .nosotros-section, #nosotros > div {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 40px 20px !important; /* Ajustamos el espacio interno para que no toque los bordes */
-        margin: 0 auto !important;
-        box-sizing: border-box !important; /* Vital para que el padding no ensanche la caja */
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
+        padding-top: 90px !important;
+        min-height: 60vh !important;
     }
 
-    /* Si tienes una imagen dentro de Nosotros que se sale: */
-    #nosotros img, .nosotros-content img {
-        max-width: 100% !important;
-        height: auto !important;
-        border-radius: 15px !important;
+    .hero h1 {
+        font-size: 1.8rem !important;
     }
 
-    /* Si el texto es el que empuja la caja hacia afuera: */
-    #nosotros p, #nosotros h2 {
-        width: 100% !important;
-        max-width: 100% !important;
-        word-wrap: break-word !important; /* Rompe palabras largas si es necesario */
+    /* 4. ELIMINACIÓN DE SCROLL LATERAL RESIDUAL */
+    html, body {
+        position: relative;
+        overflow-x: hidden !important;
     }
+    
 }
