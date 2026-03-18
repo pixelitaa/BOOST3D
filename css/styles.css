@@ -15,24 +15,29 @@ body {
 }
 
 /* --- NAVEGACIÓN (Consolidada) --- */
+/* --- NAVEGACIÓN CORREGIDA --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%; 
+    padding: 10px 5%; /* Reducimos un poco el padding vertical */
     background-color: #000000; 
     border-bottom: 1px solid #333; 
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0; /* Aseguramos que empiece en el borde izquierdo */
     z-index: 1000;
-    box-sizing: border-box; /* Evita que el padding ensanche la barra */
+    box-sizing: border-box; 
+    height: 70px; /* Definimos una altura fija para evitar saltos */
 }
 
 .logo {
-    font-size: 5rem;
+    font-size: 1.5rem; /* BAJAMOS DE 5rem A 1.5rem */
+    font-weight: 800;
     color: white;
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .nav-links {
@@ -552,19 +557,30 @@ body {
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
 
-@media (max-width: 768px) {
-    /* --- 1. BARRA DE NAVEGACIÓN --- */
-    nav {
-        padding: 15px 5% !important; /* Espacio lateral proporcional */
-        flex-direction: column !important; /* Logo arriba, menú abajo */
-        gap: 15px;
-        text-align: center;
+
+ @media (max-width: 768px) {
+    .navbar {
+        padding: 0 15px !important; /* Menos espacio a los lados en celular */
+        height: 60px !important; /* Barra más delgada en móvil */
     }
 
-    nav ul {
-        gap: 15px !important;
-        padding: 0;
-        justify-content: center;
+    .logo {
+        font-size: 1.2rem !important; /* Logo más pequeño en móvil */
+    }
+
+    .nav-links {
+        gap: 8px !important; /* Reducimos el espacio entre links */
+    }
+
+    .nav-btn {
+        font-size: 0.7rem !important; /* Letra más pequeña para que quepa todo */
+        padding: 5px 8px !important;
+    }
+
+    .btn-cta {
+        padding: 5px 10px !important;
+        font-size: 0.65rem !important;
+        margin-left: 2px !important;
     }
 
     /* --- 2. IMAGEN DE PORTADA (HERO) --- */
