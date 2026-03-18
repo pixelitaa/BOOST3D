@@ -1,39 +1,45 @@
 /* --- VARIABLES Y BASES --- */
 :root {
-    --primary: #ff00a6; /* Mantenemos el cian para detalles técnicos */
+    --primary: #ff00a6; 
     --primary-color: #ffffff; 
     --dark-bg: #121212;
     --text-light: #f5f5f7;
 }
 
-body {
-    font-family: Helvetica, Sans-Serif;
+html, body {
+    overflow-x: hidden; /* Vital: Corta cualquier desborde lateral */
+    width: 100%;
     margin: 0;
-    line-height: 1.6;
-    color: #cbcbcb;
-    background-color: var(--dark-bg); /* Asegura que el fondo sea oscuro */
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* --- NAVEGACIÓN (Consolidada) --- */
-/* --- NAVEGACIÓN CORREGIDA --- */
+body {
+    font-family: Helvetica, Sans-Serif;
+    line-height: 1.6;
+    color: #cbcbcb;
+    background-color: var(--dark-bg);
+}
+
+/* --- NAVEGACIÓN CONSOLIDADA --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%; /* Reducimos un poco el padding vertical */
+    padding: 10px 5%;
     background-color: #000000; 
     border-bottom: 1px solid #333; 
     position: fixed;
     width: 100%;
     top: 0;
-    left: 0; /* Aseguramos que empiece en el borde izquierdo */
+    left: 0;
     z-index: 1000;
     box-sizing: border-box; 
-    height: 70px; /* Definimos una altura fija para evitar saltos */
+    height: 70px;
 }
 
 .logo {
-    font-size: 1.5rem; /* BAJAMOS DE 5rem A 1.5rem */
+    font-size: 1.5rem;
     font-weight: 800;
     color: white;
     cursor: pointer;
@@ -44,7 +50,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px; 
-    flex-wrap: nowrap; /* Evita que los botones salten a una segunda línea */
+    flex-wrap: nowrap;
 }
 
 .nav-btn {
@@ -55,7 +61,6 @@ body {
     padding: 10px 15px;
     background: transparent; 
     transition: 0.3s;
-    border: 1px solid transparent; 
 }
 
 .nav-btn:hover {
@@ -65,45 +70,29 @@ body {
 .btn-cta {
     background-color: #fff9f9; 
     color: #000000 !important; 
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: 20px;
     text-decoration: none;
-    font-weight: 600; 
+    font-weight: 700; 
     text-transform: uppercase;
     margin-left: 5px;
     display: inline-block;
+    white-space: nowrap;
 }
 
-.btn-cta:hover {
-    background-color: #83838335; 
-    transform: scale(1.05);
-}
-
-/* --- HERO SECTION ACTUALIZADA --- */
-/* --- 1. CORRECCIÓN DEL HERO (CON LA IMAGEN) --- */
+/* --- HERO SECTION --- */
 .hero {
-    padding-top: 70px;
-    padding-bottom: 70px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 100px 5%;
     display: flex;
     justify-content: center;
     align-items: center; 
     min-height: 80vh;
     position: relative;
-    
-    /* Imagen de fondo */
-    background-image: url('/fondo.jpg.png');
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/fondo.jpg.png');
     background-color: #000000;
-
-    /* CAMBIO CLAVE: Usa 'cover' para que la imagen siempre llene el espacio */
     background-size: cover; 
-    
     background-position: center center;
     background-repeat: no-repeat;
-
-    /* IMPORTANTE: El fixed suele dar problemas en móviles, 
-       lo ideal es dejarlo así para PC y quitarlo en el @media que hicimos antes */
     background-attachment: fixed; 
 }
 
@@ -111,537 +100,131 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    justify-content: center; 
     text-align: center; 
     width: 100%;
     max-width: 1200px; 
-    margin: 0 auto;
     z-index: 2;
 }
 
 .hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
     font-weight: 800;
     line-height: 1.1;
-    margin: 0 auto 20px auto; 
-    letter-spacing: -2px;
-    max-width: 900px; 
-    text-align: center;
+    margin-bottom: 20px;
     color: #fff;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra para resaltar sobre la foto */
 }
 
-.hero p {
-    font-size: clamp(1.1rem, 2vw, 1.4rem); 
-    font-weight: 600;
-    color: #ffffff; 
-    max-width: 800px;
-    margin: 0 auto 40px; 
-    line-height: 1.6;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-/* Ajuste opcional para el botón dentro del hero si quieres que resalte más */
-.hero .btn-cta {
-    box-shadow: 0 10px 25px rgba(255, 0, 166, 0.3);
-    border: none;
-}
-
-/* --- SECCIÓN SERVICIOS (Paneles Superiores) --- */
-.servicios-section {
-    padding: 100px 8%; /* Más padding lateral */
+/* --- SECCIONES GRID (SERVICIOS Y MATERIALES) --- */
+.servicios-section, .materials-section {
+    padding: 80px 5%;
     background-color: #0a0a0b; 
     text-align: center;
 }
 
-.servicios-grid {
+.servicios-grid, .materials-panels {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 25px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.panel {
-
+.panel, .material-card {
     background: rgba(255, 255, 255, 0.03);
-
     border: 1px solid rgba(255, 255, 255, 0.1);
-
-    padding: 20px 20px;
-
+    padding: 25px;
     border-radius: 20px;
-
     text-align: left;
-
     transition: all 0.4s ease;
-
+    box-sizing: border-box;
 }
+
 .panel-image {
     width: 100%;
-    height: 250px;
+    height: 200px;
     overflow: hidden;
-    background: #ffffff;
-    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .panel-image img {
-    width: 110%;
-    height: 110%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.panel-content {
-    padding: 10px;
-}
-
-
-
-.panel:hover {
-
-    background: rgba(255, 255, 255, 0.07);
-
-    border-color: var(--primary);
-
-    transform: translateY(-10px);
-
-}
-
-
-
-
-.panel h3 { color: #fff; margin-bottom: 15px;
-    text-align: center;
-
-
-}
-
-
-
-.panel p {
-
-    color: #ffffff; /* Blanco para legibilidad */
-
-    text-align: left;
-
-    opacity: 1.0;
-
-    font-size: 1.0rem;
-
-    line-height: 1.6;
-
-}
-
-
-
-.panel-features {
-
-    list-style: none;
-
-    padding: 0;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-
-    padding-top: 15px;
-
-}
-
-
-
-.panel-features li {
-
-    color: #ffffff !important;
-
-    font-size: 0.9rem;
-
-    margin-bottom: 8px;
-
-    display: flex;
-
-    align-items: center;
-
-}
-
-
-
-.panel-features li before {
-
-    content: ;
-
-    color: var(--primary);
-
-    margin-right: 10px;
-
-}
-
-/* --- SECCIÓN MATERIALES (Paneles Inferiores) --- */
-.materials-section {
-    padding: 100px 8%; /* Más padding lateral para no tocar bordes */
-    background: #0f0f10;
-    text-align: center;
-}
-
-.materials-panels {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-    width: 100%; 
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-}
-
-.material-card {
-    background: #161618; 
-    border: 1px solid #2c2c2e;
-    border-radius: 12px;
-    padding: 24px;
-    text-align: left;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.material-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    background: #1c1c1e;
-}
-
-.material-card p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #ffffff; /* Texto blanco para legibilidad total */
-}
-
-.card-header h3 { color: #fff; margin: 0; }
-
-.stat {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 0.85rem;
-    color: #a1a1a6;
-}
-
-.bar {
-    width: 60%;
-    height: 8px;
-    background: #333; 
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.fill {
-    height: 100%;
-    background: var(--primary); /* Azul uniforme */
-}
-
-.subtitle {
-    display: block;
-    color: var(--primary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-align: center;
-}
-
-.materials-section h2 {
-    color: #fff;
-    text-align: center;
-    margin: 10px auto 50px;
-}
-
-.cotizador-panel {
-    max-width: 600px;
-    margin: 0 auto;
-    border: 2px dashed #333;
-    text-align: center;
-    padding: 50px;
-}
-
-.upload-area p {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.stat {
-    background: rgba(255,255,255,0.05);
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-@keyframes fadeInResult {
-    from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0); 
-    }
-}
-
-.upload-area {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px dashed rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-}
-
-
-.upload-area:hover {
-    background: rgba(0, 212, 255, 0.08) !important;
-    border-color: var(--primary) !important;
-    transform: scale(1.01);
-}
-
-/* Contenedor de resultados con animación */
-#result-area {
-    animation: fadeInResult 0.6s ease-out forwards;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 20px;
-}
-
-/* Ajuste para que las etiquetas de precio y volumen se vean industriales */
-#result-area .stat span {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    color: #a1a1a6;
-}
-
-#result-area strong {
-    font-family: 'Courier New', Courier, monospace; /* Toque técnico */
-    display: block;
-    margin-top: 5px;
-}
-/* Variables de diseño para consistencia */
-:root {
-    /* Magenta Neón/Vibrante */
-    --primary-color: #ff00a6; 
-    --primary-glow: rgba(255, 0, 255, 0.3);
-    
-    /* Mantén tus otros colores */
-    --bg-card: #141417;
-    --text-main: #ffffff;
-}
-
-#cotizador-container {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
-    max-width: 650px;
-    margin: 50px auto;
-    background: var(--bg-card);
-    border-radius: 24px;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-}
-
-/* Encabezados */
-.cotizador-header {
-    padding: 30px;
-    text-align: center;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.cotizador-header h2 {
-    margin: 0;
-    font-size: 1.7rem;
-    font-weight: 600;
-    color: #e0e0e0;
-}
-
-/* Cuerpo del Cotizador */
-.cotizador-body {
-    padding: 30px;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-label {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-
-.select-custom {
     width: 100%;
-    padding: 12px;
-    background: #1c1c1f;
-    border: 1px solid #333;
-    border-radius: 8px;
-    color: white;
-    font-size: 0.9rem;
+    height: 100%;
+    object-fit: cover;
 }
 
-
-/* Todo blanco y grande */
-#result-area {
-    color: white !important;
-}
-
-#weight-display, #volume-display, #time-display {
-    font-size: 24px !important;
-    font-weight: 200;
-}
-
-#price-display {
-    font-size: 24px !important;
-    font-weight: 200;
-}
-
-.stats-grid {
-    display:;
-}
-
-/* --- 2. SECCIÓN WHATSAPP (EXTERNA E INDEPENDIENTE) --- */
+/* --- WHATSAPP SECTION --- */
 .whatsapp-footer-section {
-    display: block !important;
-    clear: both !important;
-    width: 100% !important;
-    background-color: #000 !important;
-    padding: 100px 0 !important;
-    margin-top: 50px !important;
-    border-top: 1px solid #1a1a1a;
+    width: 100%;
+    background-color: #000;
+    padding: 80px 20px;
 }
 
 .whatsapp-container-pro {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 60px 20px;
-    background: #0a0a0c;
-    border: 1px solid rgba(255, 0, 166, 0.15);
+    padding: 40px 20px;
+    border: 1px solid rgba(255, 0, 166, 0.3);
     border-radius: 30px;
     text-align: center;
 }
 
-.whatsapp-container-pro h2 {
-    color: #fff;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    font-weight: 800;
-}
-
-.whatsapp-container-pro p {
-    color: #a1a1a6;
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 40px;
-}
-
-.btn-whatsapp-final {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    background: #25d366;
-    color: #fff !important;
-    padding: 20px 45px;
-    border-radius: 100px;
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 1.1rem;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.2);
-}
-
-.btn-whatsapp-final:hover {
-    transform: scale(1.05) translateY(-5px);
-    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
-}
-
-
- @media (max-width: 768px) {
+/* --- MEDIA QUERIES (EL CORRECTOR DE MÓVIL) --- */
+@media (max-width: 768px) {
+    /* NAVBAR: Reducimos gaps para que quepa todo el menú */
     .navbar {
-        padding: 0 15px !important; /* Menos espacio a los lados en celular */
-        height: 60px !important; /* Barra más delgada en móvil */
+        padding: 0 10px;
+        height: 65px;
     }
 
     .logo {
-        font-size: 1.2rem !important; /* Logo más pequeño en móvil */
+        font-size: 1.1rem;
     }
-
-    .logo img {
-    max-height: 30px; 
-    width: auto;
-}
 
     .nav-links {
-        gap: 5px !important; /* Reducimos el espacio al mínimo */
+        gap: 4px; /* Espacio mínimo para evitar que se desborde */
     }
 
-    /* OPCIONAL: Ocultar botones menos importantes para salvar espacio */
-    /* Si tienes un botón de "Nosotros" o "Inicio" que no es crítico en móvil: */
-    .nav-btn:nth-child(1), .nav-btn:nth-child(2) {
-        display: none !important; 
-    }
-    
-    /* Aseguramos que los botones que quedan no tengan márgenes internos gigantes */
     .nav-btn {
-        padding: 5px 8px !important;
-        font-size: 0.75rem !important;
+        font-size: 0.75rem;
+        padding: 6px 8px;
     }
 
     .btn-cta {
-        padding: 6px 10px !important;
-        font-size: 0.7rem !important;
-        margin-left: 0 !important;
+        font-size: 0.7rem;
+        padding: 6px 12px;
     }
 
-    /* --- 2. IMAGEN DE PORTADA (HERO) --- */
+    /* HERO: Desactivamos el fixed para iPhone (causa el error de zoom) */
     .hero {
-        height: 80vh !important; /* Que no sea tan alta en móvil */
-        background-attachment: scroll !important; /* El efecto 'parallax' falla en móviles */
-        background-position: center center !important;
-        padding: 0 20px !important;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+        background-attachment: scroll !important;
+        min-height: 60vh;
+        padding-top: 80px;
     }
 
     .hero h1 {
-        font-size: 2.2rem !important;
-        line-height: 1.2 !important;
+        font-size: 2rem;
     }
 
-    /* --- 3. SECCIÓN ¿QUÉ HACEMOS? (TARJETAS) --- */
-    section#servicios, #que-hacemos {
-        padding: 60px 0 !important;
+    /* GRIDS: Forzamos una sola columna limpia */
+    .servicios-grid, .materials-panels {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        width: 100%;
     }
 
-    /* Contenedor principal que envuelve las tarjetas */
-    .servicios-grid, .container-tarjetas {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important; /* CENTRA LAS TARJETAS */
-        justify-content: center !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-        gap: 30px !important;
-        padding: 0 20px !important; /* Margen de seguridad a los lados */
+    .panel, .material-card {
+        width: 100%;
+        margin: 0;
     }
 
-    /* La tarjeta individual */
-    .panel {
-        width: 100% !important; /* Ocupa el ancho del contenedor */
-        max-width: 350px !important; /* Pero que no sea gigante */
-        margin: 0 auto !important; /* Centrado automático */
-        box-sizing: border-box !important; /* Para que el padding no la ensanche */
-    }
-
-    /* --- 4. SECCIÓN NOSOTROS --- */
+    /* Ajuste para Nosotros */
     #nosotros > div {
         max-width: 100% !important;
-        padding: 0 20px !important;
+        padding: 0 15px !important;
+    }
+
+    .whatsapp-container-pro h2 {
+        font-size: 1.8rem;
     }
 }
