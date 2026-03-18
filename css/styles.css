@@ -266,7 +266,7 @@ body {
 
 .panel-features li before {
 
-    content: 
+    content: ;
 
     color: var(--primary);
 
@@ -499,7 +499,7 @@ body {
 }
 
 .stats-grid {
-    display:
+    display:;
 }
 
 /* --- 2. SECCIÓN WHATSAPP (EXTERNA E INDEPENDIENTE) --- */
