@@ -547,3 +547,53 @@ body {
     transform: scale(1.05) translateY(-5px);
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
+
+/* --- OPTIMIZACIÓN PARA MÓVILES (Celulares y Tablets) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Ajuste de la sección Nosotros (de 2 columnas a 1) */
+    #nosotros .grid-container, 
+    #nosotros > div > div:nth-child(2) { 
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 40px !important;
+    }
+
+    /* 2. Ajuste de los Paneles de Servicios */
+    .servicios-grid {
+        display: flex !important;
+        flex-direction: column !important; /* Se apilan uno sobre otro */
+        align-items: center !important;
+        gap: 25px !important;
+        width: 95% !important;
+    }
+
+    .panel {
+        width: 100% !important; /* Ocupan todo el ancho disponible */
+        max-width: 100% !important;
+        margin: 0 auto;
+    }
+
+    /* 3. Ajuste de Imágenes de Banner */
+    .panel-image, .panel-banner-top {
+        height: 150px !important; /* Un poco más altas para que luzcan en móvil */
+    }
+
+    /* 4. Textos más legibles */
+    h2 {
+        font-size: 1.8rem !important; /* Títulos menos gigantes */
+        text-align: center;
+    }
+    
+    p {
+        font-size: 1rem !important;
+        text-align: left !important; /* El justificado a veces se ve mal en pantallas muy estrechas */
+    }
+
+    /* 5. Los stats (99.8% y +500) */
+    #nosotros div[style*="display: flex; gap: 40px"] {
+        flex-direction: column !important;
+        gap: 20px !important;
+        text-align: center;
+    }
+}
