@@ -1,6 +1,7 @@
 /* --- VARIABLES Y BASES --- */
+
 :root {
-    --primary: #ff00a6; /* Mantenemos el cian para detalles técnicos */
+    --primary: #ff00a6; 
     --primary-color: #ffffff; 
     --dark-bg: #121212;
     --text-light: #f5f5f7;
@@ -11,11 +12,11 @@ body {
     margin: 0;
     line-height: 1.6;
     color: #cbcbcb;
-    background-color: var(--dark-bg); /* Asegura que el fondo sea oscuro */
+    background-color: var(--dark-bg);
+    /* Eliminamos width: 100% de aquí para evitar conflictos */
+    overflow-x: hidden; 
 }
 
-/* --- NAVEGACIÓN (Consolidada) --- */
-/* --- NAVEGACIÓN CORREGIDA --- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -560,74 +561,71 @@ body {
 
 
 @media (max-width: 768px) {
-    /* 1. ARREGLO NAVBAR: Ajuste fino para visibilidad total */
+    /* --- NAVBAR: Visibilidad Total --- */
     .navbar {
-        padding: 0 8px !important;
+        padding: 0 5px !important; /* Espacio mínimo lateral */
     }
 
     .logo {
-        font-size: 1rem !important;
-        margin-right: 5px !important;
+        font-size: 0.9rem !important; /* Reducimos el logo para dar aire */
+        margin-right: 2px !important;
     }
 
     .nav-links {
-        gap: 3px !important; /* Un poco más de aire que antes pero controlado */
+        gap: 2px !important; /* Espacio casi nulo entre botones */
     }
 
     .nav-btn {
-        font-size: 0.65rem !important;
-        padding: 4px 6px !important;
-        white-space: nowrap !important;
+        font-size: 0.6rem !important; /* Letra ultra compacta */
+        padding: 4px 5px !important;
     }
 
     .btn-cta {
-        font-size: 0.62rem !important;
-        padding: 6px 8px !important;
+        font-size: 0.6rem !important;
+        padding: 5px 8px !important;
+        margin-left: 2px !important;
     }
 
-    /* 2. ARREGLO TARJETAS (Servicios, Materiales y NOSOTROS) */
+    /* --- PANELES INFERIORES: Centrado y Ajuste Real --- */
+    /* Este selector agrupa TODO lo que se está desbordando abajo */
     .servicios-grid, 
     .materials-panels, 
+    .whatsapp-container-pro,
     #nosotros, 
-    .nosotros-section,
-    .whatsapp-container-pro {
+    .nosotros-section {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
+        flex-direction: column !important; /* Apilado vertical */
+        align-items: center !important; /* Centrado horizontal */
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 20px 15px !important; /* Espacio de seguridad lateral */
-        margin: 0 auto !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
+        max-width: 92% !important; /* Deja un pequeño margen estético a los lados */
+        margin: 20px auto !important; /* Centra el bloque entero */
+        padding: 20px 10px !important;
+        float: none !important;
     }
 
-    /* Aseguramos que los hijos de "Nosotros" no tengan anchos fijos */
-    #nosotros > div, 
-    .nosotros-content,
+    /* Tarjetas individuales dentro de los paneles */
     .panel, 
-    .material-card {
+    .material-card,
+    .whatsapp-container-pro > div {
         width: 100% !important;
-        max-width: 100% !important;
-        margin: 0 0 20px 0 !important;
-        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
     }
 
-    /* 3. ARREGLO HERO: Estabilidad visual */
+    /* --- SECCIÓN WHATSAPP --- */
+    .whatsapp-container-pro h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .whatsapp-container-pro p {
+        font-size: 0.9rem !important;
+    }
+
+    /* --- HERO --- */
     .hero {
-        background-attachment: scroll !important;
-        padding-top: 90px !important;
-        min-height: 60vh !important;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem !important;
-    }
-
-    /* 4. ELIMINACIÓN DE SCROLL LATERAL RESIDUAL */
-    html, body {
-        position: relative;
-        overflow-x: hidden !important;
+        background-attachment: scroll !important; /* Estabilidad en iPhone */
+        padding-top: 100px !important;
     }
     
 }
