@@ -1,179 +1,116 @@
-/* --- 1. RESET Y BASES VITALES --- */
+/* 1. RESET TOTAL - Obliga a todos los navegadores a medir igual */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
 :root {
-    --primary: #ff00a6; 
-    --primary-color: #ffffff; 
+    --primary: #ff00a6;
     --dark-bg: #121212;
-    --text-light: #f5f5f7;
 }
 
 html, body {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden; /* Evita el scroll lateral y deformaciones */
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    max-width: 100vw;
+    overflow-x: hidden; /* Corta cualquier error de ancho */
     background-color: var(--dark-bg);
     color: #cbcbcb;
-    -webkit-text-size-adjust: 100%; /* Evita que iPhone agrande la letra solo */
+    font-family: -apple-system, sans-serif;
+    -webkit-text-size-adjust: 100%;
 }
 
-/* --- 2. NAVEGACIÓN UNIVERSAL --- */
+/* 2. NAVBAR BLINDADA - Altura fija y sin desbordes */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 5%;
-    background-color: #000000; 
-    border-bottom: 1px solid #333; 
+    padding: 0 15px;
+    background-color: #000;
+    border-bottom: 1px solid #333;
     position: fixed;
     width: 100%;
-    height: 70px;
+    height: 60px; /* Altura estándar más segura */
     top: 0;
     left: 0;
-    z-index: 2000;
-    box-sizing: border-box; 
+    z-index: 9999;
 }
 
 .logo {
-    font-size: 1.2rem; /* Tamaño estable */
+    font-size: 1.2rem;
     font-weight: 800;
-    color: white;
+    color: #fff;
     text-decoration: none;
-    white-space: nowrap;
 }
 
 .nav-links {
     display: flex;
-    align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 
-.nav-btn {
-    color: #ffffff !important; 
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.8rem;
-    padding: 8px 12px;
-}
-
-.btn-cta {
-    background-color: #fff; 
-    color: #000 !important; 
-    padding: 8px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: 700; 
-    font-size: 0.75rem;
-    text-transform: uppercase;
-}
-
-/* --- 3. HERO SECTION (CORREGIDA) --- */
+/* 3. HERO SECTION - Eliminamos el 'fixed' que deforma en iPhone */
 .hero {
-    margin-top: 70px; /* Compensa la navbar fixed */
-    padding: 60px 20px;
+    margin-top: 60px;
+    width: 100%;
+    min-height: 70vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center; 
-    min-height: 80vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/fondo.jpg.png');
-    background-size: cover; 
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Esto se desactiva en móvil abajo */
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/fondo.jpg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll !important; /* VITAL: 'fixed' rompe el zoom en Chrome móvil */
 }
 
 .hero h1 {
-    font-size: clamp(2rem, 8vw, 4.5rem);
-    text-align: center;
+    font-size: clamp(1.8rem, 7vw, 3.5rem);
+    line-height: 1.2;
     color: #fff;
-    max-width: 900px;
-    line-height: 1.1;
+    margin-bottom: 20px;
 }
 
-/* --- 4. GRID DE SERVICIOS Y MATERIALES --- */
+/* 4. GRIDS DINÁMICOS - No más anchos fijos */
 .servicios-grid, .materials-panels {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    display: block; /* En móvil por defecto es bloque */
+    width: 100%;
+    padding: 20px;
+}
+
+@media (min-width: 769px) {
+    .servicios-grid, .materials-panels {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 }
 
 .panel, .material-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 20px;
-    box-sizing: border-box;
-}
-
-/* --- 5. MEDIA QUERY AGRESIVA PARA MÓVIL (iOS & CHROME) --- */
-@media (max-width: 768px) {
-    .navbar {
-        height: 60px;
-        padding: 0 15px;
-    }
-
-    /* Ocultar links secundarios para que quepa el CTA */
-    .nav-btn:not(.btn-cta) {
-        display: none; 
-    }
-
-    .logo {
-        font-size: 1rem;
-    }
-
-    .hero {
-        background-attachment: scroll; /* Vital para iPhone */
-        min-height: 60vh;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    /* Forzar que las tarjetas no se peguen a los bordes */
-    .servicios-grid, .materials-panels {
-        grid-template-columns: 1fr;
-        width: 100%;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
-
-    .panel, .material-card {
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    .whatsapp-container-pro h2 {
-        font-size: 1.8rem;
-    }
-}
-
-/* --- 6. WHATSAPP SECTION --- */
-.whatsapp-footer-section {
     width: 100%;
-    background: #000;
-    padding: 60px 20px;
-    box-sizing: border-box;
+    margin-bottom: 20px;
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #333;
 }
 
-.whatsapp-container-pro {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    border: 1px solid var(--primary);
-    border-radius: 20px;
-    text-align: center;
-}
+/* 5. AJUSTE QUIRÚRGICO PARA MÓVIL */
+@media (max-width: 768px) {
+    /* Ocultamos links de texto para que el botón de pago quepa */
+    .nav-btn:not(.btn-cta) {
+        display: none !important;
+    }
+    
+    .btn-cta {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
 
-.btn-whatsapp-final {
-    background: #25d366;
-    color: #fff;
-    padding: 15px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-block;
+    /* Evita que las imágenes de los paneles se deformen */
+    .panel-image {
+        height: 180px !important;
+    }
 }
