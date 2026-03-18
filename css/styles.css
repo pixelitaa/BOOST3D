@@ -559,6 +559,35 @@ body {
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
 
+/* Estilo Base (Escritorio) */
+.nosotros-grid-ajuste {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.nosotros-panel-mini {
+    background: #0a0a0c;
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #1a1a1a;
+    box-sizing: border-box;
+}
+
+.nosotros-panel-mini h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.nosotros-panel-mini p {
+    font-size: 1.0rem;
+    line-height: 1.4;
+    color: #a1a1a6;
+    text-align: justify;
+    margin: 0;
+}
 
 @media (max-width: 768px) {
     /* --- NAVBAR: Visibilidad Total --- */
@@ -626,6 +655,19 @@ body {
     .hero {
         background-attachment: scroll !important; /* Estabilidad en iPhone */
         padding-top: 100px !important;
+    }
+
+    .nosotros-grid-ajuste {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Centra los paneles */
+        gap: 15px !important;
+    }
+
+    .nosotros-panel-mini {
+        width: 100% !important;
+        max-width: 380px !important; /* Para que no se vean gigantes, pero sí centrados */
+        padding: 20px !important;
     }
     
 }
