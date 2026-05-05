@@ -83,29 +83,24 @@ body {
 /* --- HERO SECTION ACTUALIZADA --- */
 /* --- 1. CORRECCIÓN DEL HERO (CON LA IMAGEN) --- */
 .hero {
-    padding-top: 70px;
-    padding-bottom: 70px;
-    padding-left: 5%;
-    padding-right: 5%;
+    padding: 70px 5%;
     display: flex;
     justify-content: center;
     align-items: center; 
     min-height: 80vh;
     position: relative;
     
-    /* Imagen de fondo */
-    background-image: url('/soporteorumaqui.png');
-    background-color: #000000;
+    /* CAMBIA AQUÍ LA RUTA DE TU IMAGEN */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('./soporteorumaqui.png');
 
-    /* CAMBIO CLAVE: Usa 'cover' para que la imagen siempre llene el espacio */
+    background-color: #000000;
     background-size: cover; 
-    
     background-position: center center;
     background-repeat: no-repeat;
 
-    /* IMPORTANTE: El fixed suele dar problemas en móviles, 
-       lo ideal es dejarlo así para PC y quitarlo en el @media que hicimos antes */
+    /* Mantenemos el efecto fixed para PC */
     background-attachment: fixed; 
+}
 }
 
 .hero-content {
