@@ -85,7 +85,7 @@ body {
 .hero {
     /* 1. Bajamos la altura para que no obligue a la imagen a agrandarse tanto */
     min-height: 450px; 
-    height: 70vh; 
+    height: 80vh; 
     
     padding: 20px 5%;
     display: flex;
@@ -94,7 +94,7 @@ body {
     position: relative;
     
     /* Imagen de fondo con un degradado para que el texto sea legible */
-    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/fondo.jpg.png');
+    background-image: url('/fondo.jpg.png');
     background-color: #000000;
 
     /* 2. CAMBIO CLAVE: Usamos 'contain' o un porcentaje controlado */
