@@ -98,7 +98,7 @@ body {
     background-color: #000000;
 
     /* 2. CAMBIO CLAVE: Usamos 'contain' o un porcentaje controlado */
-    background-size: cover; 
+    background-size: contain; 
     background-position: center center;
     background-repeat: no-repeat;
 
