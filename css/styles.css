@@ -83,29 +83,27 @@ body {
 /* --- HERO SECTION ACTUALIZADA --- */
 /* --- 1. CORRECCIÓN DEL HERO (CON LA IMAGEN) --- */
 .hero {
-    padding-top: 70px;
-    padding-bottom: 70px;
-    padding-left: 5%;
-    padding-right: 5%;
+    /* 1. Bajamos la altura para que no obligue a la imagen a agrandarse tanto */
+    min-height: 450px; 
+    height: 60vh; 
+    
+    padding: 20px 5%;
     display: flex;
     justify-content: center;
     align-items: center; 
-    min-height: 80vh;
     position: relative;
     
-    /* Imagen de fondo */
-    background-image: url('/fondo.jpg.png');
+    /* Imagen de fondo con un degradado para que el texto sea legible */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/fondo.jpg.png');
     background-color: #000000;
 
-    /* CAMBIO CLAVE: Usa 'cover' para que la imagen siempre llene el espacio */
+    /* 2. CAMBIO CLAVE: Usamos 'contain' o un porcentaje controlado */
     background-size: cover; 
-    
     background-position: center center;
     background-repeat: no-repeat;
 
-    /* IMPORTANTE: El fixed suele dar problemas en móviles, 
-       lo ideal es dejarlo así para PC y quitarlo en el @media que hicimos antes */
-    background-attachment: fixed; 
+    /* 3. El 'fixed' causa mucho zoom en imágenes horizontales, mejor usar scroll */
+    background-attachment: scroll; 
 }
 
 .hero-content {
