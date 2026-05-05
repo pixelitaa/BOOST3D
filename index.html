@@ -169,9 +169,17 @@
 </header>
 
 <section class="hero">
-    <div class="overlay"></div> <div class="hero-content">
+    <div class="hero-slideshow">
+        <img src="fondo.jpg.png" class="active">
+        <img src="soporteorumaqui.png">
+        <img src="tu-imagen-3.jpg">
+    </div>
+    
+    <div class="overlay"></div>
+
+    <div class="hero-content">
         <h1>TRANSFORMA TUS IDEAS EN PRODUCTOS</h1>
-        <p>Prototipado rápido con precisión y producción FDM (Modelado por deposición fundida).</p>
+        <p>Prototipado rápido con precisión y producción FDM.</p>
         <div class="hero-btns">
             <a href="#cotizador-container" class="btn-cta">Sube tu archivo aquí</a>
         </div>
@@ -457,5 +465,21 @@
    <span style="display: none;">WhatsApp</span>
    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width: 35px;">
 </a>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.hero-slideshow img');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+    });
+</script>
+
 </body>
 </html>
