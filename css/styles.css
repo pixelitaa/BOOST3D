@@ -85,7 +85,7 @@ body {
 .hero {
     /* 1. Bajamos la altura para que no obligue a la imagen a agrandarse tanto */
     min-height: 450px; 
-    height: 60vh; 
+    height: 70vh; 
     
     padding: 20px 5%;
     display: flex;
