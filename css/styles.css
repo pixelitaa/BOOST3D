@@ -83,54 +83,31 @@ body {
 /* --- HERO SECTION ACTUALIZADA --- */
 /* --- 1. CORRECCIÓN DEL HERO (CON LA IMAGEN) --- */
 .hero {
-    padding: 70px 5%;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    padding-left: 5%;
+    padding-right: 5%;
     display: flex;
     justify-content: center;
     align-items: center; 
     min-height: 80vh;
     position: relative;
+    
+    /* Imagen de fondo */
+    background-image: url('img/soporteorumaqui.png');
     background-color: #000000;
-    overflow: hidden; /* Vital para que las fotos no se salgan */
+
+    /* CAMBIO CLAVE: Usa 'cover' para que la imagen siempre llene el espacio */
+    background-size: cover; 
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    /* IMPORTANTE: El fixed suele dar problemas en móviles, 
+       lo ideal es dejarlo así para PC y quitarlo en el @media que hicimos antes */
+    background-attachment: fixed; 
 }
 
-/* El nuevo contenedor de imágenes */
-.hero-slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.hero-slideshow img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-}
-
-.hero-slideshow img.active {
-    opacity: 1;
-}
-
-/* Tu Overlay para mantener la legibilidad */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* El sombreado que tenías en el gradiente */
-    z-index: 1;
-}
-
-/* Mantenemos tu hero-content intacto */
 .hero-content {
     display: flex;
     flex-direction: column;
@@ -140,10 +117,9 @@ body {
     width: 100%;
     max-width: 1200px; 
     margin: 0 auto;
-    z-index: 2; /* Por encima de las fotos y el overlay */
+    z-index: 2;
 }
 
-/* Tus estilos de H1, P y BTN se quedan exactamente igual */
 .hero h1 {
     font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
@@ -153,7 +129,7 @@ body {
     max-width: 900px; 
     text-align: center;
     color: #fff;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra para resaltar sobre la foto */
 }
 
 .hero p {
@@ -166,6 +142,7 @@ body {
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
+/* Ajuste opcional para el botón dentro del hero si quieres que resalte más */
 .hero .btn-cta {
     box-shadow: 0 10px 25px rgba(255, 0, 166, 0.3);
     border: none;
