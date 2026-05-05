@@ -94,7 +94,7 @@ body {
     position: relative;
     
     /* Imagen de fondo */
-    background-image: url('img/soporteorumaqui.png');
+    background-image: url('/soporteorumaqui.png');
     background-color: #000000;
 
     /* CAMBIO CLAVE: Usa 'cover' para que la imagen siempre llene el espacio */
