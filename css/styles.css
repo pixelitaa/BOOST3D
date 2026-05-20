@@ -80,10 +80,9 @@ body {
     transform: scale(1.05);
 }
 
-/* --- HERO SECTION ACTUALIZADA --- */
-/* --- 1. CORRECCIÓN DEL HERO (CON LA IMAGEN) --- */
+
 .hero {
-    /* 1. Bajamos la altura para que no obligue a la imagen a agrandarse tanto */
+    
     min-height: 450px; 
     height: 80vh; 
     
@@ -93,16 +92,16 @@ body {
     align-items: center; 
     position: relative;
     
-    /* Imagen de fondo con un degradado para que el texto sea legible */
+    
     background-image: url('/fondo.jpg.png');
     background-color: #000000;
 
-    /* 2. CAMBIO CLAVE: Usamos 'contain' o un porcentaje controlado */
+    
     background-size: contain; 
     background-position: center center;
     background-repeat: no-repeat;
 
-    /* 3. El 'fixed' causa mucho zoom en imágenes horizontales, mejor usar scroll */
+    
     background-attachment: scroll; 
 }
 
@@ -588,59 +587,96 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* --- NAVBAR: Visibilidad Total --- */
+    /* --- 1. NAVBAR: Optimización de Espacio --- */
     .navbar {
-        padding: 0 5px !important; /* Espacio mínimo lateral */
+        padding: 0 5px !important;
     }
 
     .logo {
-        font-size: 0.9rem !important; /* Reducimos el logo para dar aire */
+        font-size: 0.9rem !important;
         margin-right: 2px !important;
     }
 
     .nav-links {
-        gap: 2px !important; /* Espacio casi nulo entre botones */
+        gap: 2px !important;
     }
 
     .nav-btn {
-        font-size: 0.6rem !important; /* Letra ultra compacta */
+        font-size: 0.6rem !important;
         padding: 4px 5px !important;
     }
 
-    .btn-cta {
+    .navbar .btn-cta {
         font-size: 0.6rem !important;
         padding: 5px 8px !important;
         margin-left: 2px !important;
     }
 
-    /* --- PANELES INFERIORES: Centrado y Ajuste Real --- */
-    /* Este selector agrupa TODO lo que se está desbordando abajo */
+    /* --- 2. HERO: Proporciones Reales y Legibilidad --- */
+    .hero {
+        height: 55vh !important; /* Altura ideal en vertical */
+        min-height: 380px !important; 
+        
+        /* Elimina el hueco enorme: 70px exactos para compensar la Navbar fija */
+        padding-top: 75px !important; 
+        padding-bottom: 30px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+
+        /* Forza a que la foto rellene el contenedor sin verse como una cinta estirada */
+        background-size: cover !important; 
+        background-position: center center !important;
+        background-attachment: scroll !important; /* Fluidez total en celulares */
+    }
+
+    .hero h1 {
+        font-size: 1.7rem !important; /* Escala real para pantallas de 390px */
+        line-height: 1.2 !important;
+        margin: 0 auto 15px auto !important;
+        letter-spacing: -0.5px !important;
+    }
+
+    .hero p {
+        font-size: 0.95rem !important; /* Párrafo estilizado y compacto */
+        line-height: 1.4 !important;
+        margin: 0 auto 25px auto !important;
+        max-width: 100% !important;
+    }
+
+    /* --- 3. PANELES Y TARJETAS: Consolidación y Centrado Estético --- */
+    /* Unificamos todas las rejillas de la web para que se apilen idénticamente al centro */
     .servicios-grid, 
     .materials-panels, 
-    .whatsapp-container-pro,
-    #nosotros, 
-    .nosotros-section {
+    .nosotros-grid-ajuste {
         display: flex !important;
-        flex-direction: column !important; /* Apilado vertical */
-        align-items: center !important; /* Centrado horizontal */
+        flex-direction: column !important;
+        align-items: center !important; 
         width: 100% !important;
-        max-width: 92% !important; /* Deja un pequeño margen estético a los lados */
-        margin: 20px auto !important; /* Centra el bloque entero */
-        padding: 20px 10px !important;
-        float: none !important;
+        max-width: 92% !important; 
+        margin: 20px auto !important; 
+        gap: 15px !important;
+        padding: 0 !important;
     }
 
-    /* Tarjetas individuales dentro de los paneles */
+    /* Unificamos el ancho máximo de las tarjetas individuales para consistencia visual */
     .panel, 
     .material-card,
-    .whatsapp-container-pro > div {
+    .nosotros-panel-mini {
         width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        margin-bottom: 15px !important;
+        max-width: 380px !important; /* Evita que las tarjetas revienten hacia los lados */
+        margin: 0 0 5px 0 !important;
+        box-sizing: border-box !important;
     }
 
-    /* --- SECCIÓN WHATSAPP --- */
+    /* --- 4. SECCIÓN WHATSAPP --- */
+    .whatsapp-container-pro {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin: 30px auto !important;
+        padding: 40px 20px !important;
+        box-sizing: border-box !important;
+    }
+
     .whatsapp-container-pro h2 {
         font-size: 1.5rem !important;
     }
@@ -648,24 +684,4 @@ body {
     .whatsapp-container-pro p {
         font-size: 0.9rem !important;
     }
-
-    /* --- HERO --- */
-    .hero {
-        background-attachment: scroll !important; /* Estabilidad en iPhone */
-        padding-top: 100px !important;
-    }
-
-    .nosotros-grid-ajuste {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important; /* Centra los paneles */
-        gap: 15px !important;
-    }
-
-    .nosotros-panel-mini {
-        width: 100% !important;
-        max-width: 380px !important; /* Para que no se vean gigantes, pero sí centrados */
-        padding: 20px !important;
-    }
-    
 }
