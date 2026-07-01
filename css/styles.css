@@ -576,6 +576,7 @@ body {
     display: block !important;
     color: var(--primary-color) !important; /* CORREGIDO */
     font-size: 0.9rem !important;
+    text-align: center !important;
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
     font-weight: 700 !important;
