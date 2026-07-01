@@ -557,25 +557,25 @@ body {
 }
 
 /* ==========================================================================
-   SOLUCIÓN ANTICONFLICTO: #NOSOTROS (ESCRITORIO + MÓVIL)
+   NUEVA SECCIÓN NOSOTROS (ESTILO INDUSTRIAL PREMIUM)
    ========================================================================== */
-
-/* --- VERSIÓN ESCRITORIO --- */
-#nosotros {
+.nosotros-section {
     padding: 100px 8% !important;
     background-color: #0f0f10 !important; /* Fondo oscuro industrial */
     color: #cbcbcb !important;
-    display: block !important;
+    font-family: sans-serif; /* O la tipografía de tu web */
 }
 
-#nosotros .nosotros-container {
+.nosotros-container {
     max-width: 1100px !important;
     margin: 0 auto !important;
 }
 
-#nosotros .subtitle {
+/* Estilos de seguridad para títulos que antes eran genéricos */
+.nosotros-section .subtitle {
     display: block !important;
-    color: var(--primary-color) !important; 
+    text-align: center !important;
+    color: var(--primary-color) !important; /* CORREGIDO */
     font-size: 0.9rem !important;
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
@@ -583,8 +583,9 @@ body {
     margin-bottom: 5px !important;
 }
 
-#nosotros h2 {
+.nosotros-section h2 {
     color: #ffffff !important;
+    text-align: center !important;
     font-size: 2.2rem !important;
     font-weight: 800 !important;
     margin-top: 0 !important;
@@ -592,12 +593,13 @@ body {
     letter-spacing: -1px !important;
 }
 
-#nosotros .nosotros-hook {
+/* El bloque destacado */
+.nosotros-hook {
     font-size: 1.6rem !important;
     font-weight: 600 !important;
     color: #ffffff !important;
     text-align: center !important;
-    border-left: 4px solid var(--primary-color) !important; 
+    border-left: 4px solid var(--primary-color) !important; /* CORREGIDO */
     padding-left: 20px !important;
     margin: 40px auto !important;
     max-width: 900px !important;
@@ -605,14 +607,15 @@ body {
     font-style: italic !important;
 }
 
-#nosotros .nosotros-layout {
+/* Columnas */
+.nosotros-layout {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 50px !important;
     margin-top: 50px !important;
 }
 
-#nosotros .nosotros-col h3 {
+.nosotros-col h3 {
     color: #ffffff !important;
     font-size: 1.3rem !important;
     margin-bottom: 20px !important;
@@ -620,7 +623,7 @@ body {
     letter-spacing: 1px !important;
 }
 
-#nosotros .nosotros-col p {
+.nosotros-col p {
     font-size: 1.05rem !important;
     line-height: 1.6 !important;
     color: #a1a1a6 !important;
@@ -628,28 +631,62 @@ body {
     text-align: left !important;
 }
 
-#nosotros .nosotros-stats {
+.nosotros-col strong {
+    color: var(--primary-color) !important; /* CORREGIDO */
+}
+
+/* Cierre de la sección */
+.nosotros-footer-text {
+    margin-top: 50px !important;
+    padding-top: 30px !important;
+    border-top: 1px solid #2c2c2e !important;
+    text-align: center !important;
+    max-width: 900px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.nosotros-footer-text p {
+    font-size: 1.1rem !important;
+    line-height: 1.6 !important;
+    color: #ffffff !important;
+}
+
+.highlight-final {
+    font-weight: 700 !important;
+    color: var(--primary-color) !important; /* CORREGIDO */
+    margin-top: 20px !important;
+    font-size: 1.2rem !important;
+}
+
+/* --- BLOQUE DE CONTADORES INDUSTRIALES (DESKTOP) --- */
+.nosotros-stats {
     display: flex !important;
     justify-content: space-around !important;
     align-items: center !important;
     gap: 20px !important;
     margin: 60px auto 40px auto !important;
     padding: 35px 20px !important;
-    background-color: #161618 !important; 
+    background-color: #161618 !important; /* Un gris ligeramente más claro que resalta */
     border-radius: 8px !important;
     border: 1px solid #2c2c2e !important;
+    max-width: 900px !important;
 }
 
-#nosotros .stat-number {
+.stat-item {
+    text-align: center !important;
+}
+
+.stat-number {
     display: block !important;
     font-size: 2.8rem !important;
     font-weight: 800 !important;
-    color: var(--primary-color) !important; 
+    color: var(--primary-color) !important; /* Tu color magenta de marca */
     line-height: 1 !important;
     margin-bottom: 8px !important;
 }
 
-#nosotros .stat-label {
+.stat-label {
     display: block !important;
     font-size: 0.9rem !important;
     color: #a1a1a6 !important;
@@ -658,88 +695,137 @@ body {
     font-weight: 600 !important;
 }
 
-#nosotros .nosotros-footer-text {
-    margin-top: 50px !important;
-    padding-top: 30px !important;
-    border-top: 1px solid #2c2c2e !important;
-    text-align: center !important;
-}
-
-#nosotros .nosotros-footer-text p {
-    font-size: 1.1rem !important;
-    line-height: 1.6 !important;
-    color: #ffffff !important;
-}
-
-#nosotros .highlight-final {
-    font-weight: 700 !important;
-    color: var(--primary-color) !important; 
-    margin-top: 20px !important;
-    font-size: 1.2rem !important;
-}
-
-
-/* --- VERSIÓN CELULAR (@MEDIA) --- */
 @media (max-width: 768px) {
-    #nosotros {
-        padding: 60px 20px !important; 
+    /* --- 1. NAVBAR: Optimización de Espacio --- */
+    .navbar { padding: 0 5px !important; }
+    .logo { font-size: 0.9rem !important; margin-right: 2px !important; }
+    .nav-links { gap: 2px !important; }
+    .nav-btn { font-size: 0.6rem !important; padding: 4px 5px !important; }
+    .navbar .btn-cta { font-size: 0.6rem !important; padding: 5px 8px !important; margin-left: 2px !important; }
+
+    /* --- 2. HERO: Proporciones Reales y Legibilidad --- */
+    .hero {
+        height: 55vh !important; 
+        min-height: 380px !important; 
+        padding-top: 75px !important; 
+        padding-bottom: 30px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        background-size: cover !important; 
+        background-position: center center !important;
+        background-attachment: scroll !important; 
+    }
+    .hero h1 { font-size: 1.7rem !important; line-height: 1.2 !important; margin: 0 auto 15px auto !important; letter-spacing: -0.5px !important; }
+    .hero p { font-size: 0.95rem !important; line-height: 1.4 !important; margin: 0 auto 25px auto !important; max-width: 100% !important; }
+
+    /* --- 3. PANELES Y TARJETAS INFERIORES --- */
+    .servicios-grid, .materials-panels {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; 
+        width: 100% !important;
+        max-width: 92% !important; 
+        margin: 20px auto !important; 
+        gap: 15px !important;
+        padding: 0 !important;
+    }
+    .panel, .material-card {
+        width: 100% !important;
+        max-width: 380px !important; 
+        margin: 0 0 5px 0 !important;
         box-sizing: border-box !important;
     }
 
-    #nosotros h2 {
-        font-size: 1.6rem !important;
-        margin-bottom: 20px !important;
+    /* --- 4. SECCIÓN NOSOTROS (MÓVIL TOTALMENTE BLINDADO) --- */
+    .nosotros-section {
+        padding: 60px 20px !important; 
+        box-sizing: border-box !important;
+        background-color: #0f0f10 !important;
     }
 
-    #nosotros .nosotros-hook {
+    .nosotros-section h2 {
+        font-size: 1.6rem !important;
+        margin-bottom: 20px !important;
+        color: #ffffff !important;
+    }
+
+    .nosotros-hook {
         font-size: 1.2rem !important;
         padding-left: 15px !important;
         margin: 25px 0 !important;
         text-align: left !important; 
+        border-left: 4px solid var(--primary-color) !important;
+        color: #ffffff !important;
     }
 
-    #nosotros .nosotros-layout {
+    .nosotros-layout {
         display: flex !important;
         flex-direction: column !important; 
         gap: 30px !important;
         margin-top: 30px !important;
     }
 
-    #nosotros .nosotros-col h3 {
+    .nosotros-col h3 {
         font-size: 1.1rem !important;
         margin-bottom: 10px !important;
+        color: #ffffff !important;
     }
 
-    #nosotros .nosotros-col p {
+    .nosotros-col p {
         font-size: 0.95rem !important;
         line-height: 1.5 !important;
+        text-align: left !important; 
+        color: #a1a1a6 !important;
     }
 
-    #nosotros .nosotros-stats {
-        flex-direction: column !important; 
-        gap: 35px !important; 
+    /* ADAPTACIÓN DE LAS MÉTRICAS EN CELULARES */
+    .nosotros-stats {
+        flex-direction: column !important; /* Apilado vertical ultra seguro */
+        gap: 35px !important; /* Espacio cómodo entre contadores */
         padding: 30px 20px !important;
         margin: 40px auto 20px auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
-    #nosotros .stat-number {
-        font-size: 2.3rem !important; 
+    .stat-number {
+        font-size: 2.3rem !important; /* Tamaño responsivo que no desborda */
+        margin-bottom: 4px !important;
     }
 
-    #nosotros .stat-label {
+    .stat-label {
         font-size: 0.85rem !important;
+        letter-spacing: 1px !important;
     }
 
-    #nosotros .nosotros-footer-text {
+    /* CIERRE EDITORIAL */
+    .nosotros-footer-text {
         margin-top: 40px !important;
         padding-top: 25px !important;
+        border-top: 1px solid #2c2c2e !important;
     }
 
-    #nosotros .nosotros-footer-text p {
+    .nosotros-footer-text p {
         font-size: 0.95rem !important;
+        text-align: left !important;
+        color: #ffffff !important;
     }
 
-    #nosotros .highlight-final {
+    .highlight-final {
         font-size: 1.05rem !important;
+        text-align: center !important; 
+        color: var(--primary-color) !important;
+        font-weight: 700 !important;
     }
+
+    /* --- 5. SECCIÓN WHATSAPP --- */
+    .whatsapp-container-pro {
+        width: 100% !important;
+        max-width: 92% !important;
+        margin: 30px auto !important;
+        padding: 40px 20px !important;
+        box-sizing: border-box !important;
+    }
+    .whatsapp-container-pro h2 { font-size: 1.5rem !important; }
+    .whatsapp-container-pro p { font-size: 0.9rem !important; }
 }
