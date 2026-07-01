@@ -659,31 +659,49 @@ body {
     font-size: 1.2rem !important;
 }
 
+/* --- BLOQUE DE CONTADORES INDUSTRIALES (DESKTOP) --- */
+.nosotros-stats {
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin: 60px auto 40px auto !important;
+    padding: 35px 20px !important;
+    background-color: #161618 !important; /* Un gris ligeramente más claro que resalta */
+    border-radius: 8px !important;
+    border: 1px solid #2c2c2e !important;
+    max-width: 900px !important;
+}
+
+.stat-item {
+    text-align: center !important;
+}
+
+.stat-number {
+    display: block !important;
+    font-size: 2.8rem !important;
+    font-weight: 800 !important;
+    color: var(--primary-color) !important; /* Tu color magenta de marca */
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+}
+
+.stat-label {
+    display: block !important;
+    font-size: 0.9rem !important;
+    color: #a1a1a6 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-weight: 600 !important;
+}
+
 @media (max-width: 768px) {
     /* --- 1. NAVBAR: Optimización de Espacio --- */
-    .navbar {
-        padding: 0 5px !important;
-    }
-
-    .logo {
-        font-size: 0.9rem !important;
-        margin-right: 2px !important;
-    }
-
-    .nav-links {
-        gap: 2px !important;
-    }
-
-    .nav-btn {
-        font-size: 0.6rem !important;
-        padding: 4px 5px !important;
-    }
-
-    .navbar .btn-cta {
-        font-size: 0.6rem !important;
-        padding: 5px 8px !important;
-        margin-left: 2px !important;
-    }
+    .navbar { padding: 0 5px !important; }
+    .logo { font-size: 0.9rem !important; margin-right: 2px !important; }
+    .nav-links { gap: 2px !important; }
+    .nav-btn { font-size: 0.6rem !important; padding: 4px 5px !important; }
+    .navbar .btn-cta { font-size: 0.6rem !important; padding: 5px 8px !important; margin-left: 2px !important; }
 
     /* --- 2. HERO: Proporciones Reales y Legibilidad --- */
     .hero {
@@ -697,24 +715,11 @@ body {
         background-position: center center !important;
         background-attachment: scroll !important; 
     }
+    .hero h1 { font-size: 1.7rem !important; line-height: 1.2 !important; margin: 0 auto 15px auto !important; letter-spacing: -0.5px !important; }
+    .hero p { font-size: 0.95rem !important; line-height: 1.4 !important; margin: 0 auto 25px auto !important; max-width: 100% !important; }
 
-    .hero h1 {
-        font-size: 1.7rem !important; 
-        line-height: 1.2 !important;
-        margin: 0 auto 15px auto !important;
-        letter-spacing: -0.5px !important;
-    }
-
-    .hero p {
-        font-size: 0.95rem !important; 
-        line-height: 1.4 !important;
-        margin: 0 auto 25px auto !important;
-        max-width: 100% !important;
-    }
-
-    /* --- 3. PANELES Y TARJETAS (RECONSTRUIDO Y CORREGIDO) --- */
-    .servicios-grid, 
-    .materials-panels {
+    /* --- 3. PANELES Y TARJETAS INFERIORES --- */
+    .servicios-grid, .materials-panels {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important; 
@@ -724,21 +729,18 @@ body {
         gap: 15px !important;
         padding: 0 !important;
     }
-
-    /* Aquí solucionamos el corte que tenía tu archivo original */
-    .panel, 
-    .material-card {
+    .panel, .material-card {
         width: 100% !important;
         max-width: 380px !important; 
         margin: 0 0 5px 0 !important;
         box-sizing: border-box !important;
     }
 
-    /* --- 4. NUEVA SECCIÓN NOSOTROS (ADAPTACIÓN MÓVIL ESTÉTICA) --- */
+    /* --- 4. SECCIÓN NOSOTROS (MÓVIL TOTALMENTE BLINDADO) --- */
     .nosotros-section {
         padding: 60px 20px !important; 
         box-sizing: border-box !important;
-        background-color: #0f0f10 !important; /* Mantiene el fondo oscuro industrial */
+        background-color: #0f0f10 !important;
     }
 
     .nosotros-section h2 {
@@ -752,13 +754,13 @@ body {
         padding-left: 15px !important;
         margin: 25px 0 !important;
         text-align: left !important; 
-        border-left: 4px solid var(--primary-color) !important; /* Resonancia con tu marca */
+        border-left: 4px solid var(--primary-color) !important;
         color: #ffffff !important;
     }
 
     .nosotros-layout {
         display: flex !important;
-        flex-direction: column !important; /* Apilado limpio en vertical */
+        flex-direction: column !important; 
         gap: 30px !important;
         margin-top: 30px !important;
     }
@@ -772,13 +774,34 @@ body {
     .nosotros-col p {
         font-size: 0.95rem !important;
         line-height: 1.5 !important;
-        text-align: left !important; /* Evita espacios raros entre palabras en móvil */
+        text-align: left !important; 
         color: #a1a1a6 !important;
     }
 
+    /* ADAPTACIÓN DE LAS MÉTRICAS EN CELULARES */
+    .nosotros-stats {
+        flex-direction: column !important; /* Apilado vertical ultra seguro */
+        gap: 35px !important; /* Espacio cómodo entre contadores */
+        padding: 30px 20px !important;
+        margin: 40px auto 20px auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .stat-number {
+        font-size: 2.3rem !important; /* Tamaño responsivo que no desborda */
+        margin-bottom: 4px !important;
+    }
+
+    .stat-label {
+        font-size: 0.85rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* CIERRE EDITORIAL */
     .nosotros-footer-text {
-        margin-top: 30px !important;
-        padding-top: 20px !important;
+        margin-top: 40px !important;
+        padding-top: 25px !important;
         border-top: 1px solid #2c2c2e !important;
     }
 
@@ -803,12 +826,6 @@ body {
         padding: 40px 20px !important;
         box-sizing: border-box !important;
     }
-
-    .whatsapp-container-pro h2 {
-        font-size: 1.5rem !important;
-    }
-    
-    .whatsapp-container-pro p {
-        font-size: 0.9rem !important;
-    }
+    .whatsapp-container-pro h2 { font-size: 1.5rem !important; }
+    .whatsapp-container-pro p { font-size: 0.9rem !important; }
 }
