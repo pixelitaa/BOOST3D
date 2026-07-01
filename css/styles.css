@@ -556,14 +556,10 @@ body {
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
 
-/* ==========================================================================
-   NUEVA SECCIÓN NOSOTROS (ESTILO INDUSTRIAL PREMIUM)
-   ========================================================================== */
 .nosotros-section {
     padding: 100px 8% !important;
     background-color: #0f0f10 !important; /* Fondo oscuro industrial */
     color: #cbcbcb !important;
-    font-family: sans-serif; /* O la tipografía de tu web */
 }
 
 .nosotros-container {
@@ -571,11 +567,9 @@ body {
     margin: 0 auto !important;
 }
 
-/* Estilos de seguridad para títulos que antes eran genéricos */
 .nosotros-section .subtitle {
     display: block !important;
-    text-align: center !important;
-    color: var(--primary-color) !important; /* CORREGIDO */
+    color: var(--primary-color) !important; 
     font-size: 0.9rem !important;
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
@@ -585,7 +579,6 @@ body {
 
 .nosotros-section h2 {
     color: #ffffff !important;
-    text-align: center !important;
     font-size: 2.2rem !important;
     font-weight: 800 !important;
     margin-top: 0 !important;
@@ -593,13 +586,12 @@ body {
     letter-spacing: -1px !important;
 }
 
-/* El bloque destacado */
 .nosotros-hook {
     font-size: 1.6rem !important;
     font-weight: 600 !important;
     color: #ffffff !important;
     text-align: center !important;
-    border-left: 4px solid var(--primary-color) !important; /* CORREGIDO */
+    border-left: 4px solid var(--primary-color) !important; 
     padding-left: 20px !important;
     margin: 40px auto !important;
     max-width: 900px !important;
@@ -607,7 +599,6 @@ body {
     font-style: italic !important;
 }
 
-/* Columnas */
 .nosotros-layout {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
@@ -632,10 +623,45 @@ body {
 }
 
 .nosotros-col strong {
-    color: var(--primary-color) !important; /* CORREGIDO */
+    color: var(--primary-color) !important; 
 }
 
-/* Cierre de la sección */
+/* Bloque de Métricas / Contadores (PC) */
+.nosotros-stats {
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 20px !important;
+    margin: 60px auto 40px auto !important;
+    padding: 35px 20px !important;
+    background-color: #161618 !important; 
+    border-radius: 8px !important;
+    border: 1px solid #2c2c2e !important;
+    max-width: 900px !important;
+}
+
+.stat-item {
+    text-align: center !important;
+}
+
+.stat-number {
+    display: block !important;
+    font-size: 2.8rem !important;
+    font-weight: 800 !important;
+    color: var(--primary-color) !important; 
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+}
+
+.stat-label {
+    display: block !important;
+    font-size: 0.9rem !important;
+    color: #a1a1a6 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    font-weight: 600 !important;
+}
+
 .nosotros-footer-text {
     margin-top: 50px !important;
     padding-top: 30px !important;
@@ -654,89 +680,14 @@ body {
 
 .highlight-final {
     font-weight: 700 !important;
-    color: var(--primary-color) !important; /* CORREGIDO */
+    color: var(--primary-color) !important; 
     margin-top: 20px !important;
     font-size: 1.2rem !important;
 }
 
-/* --- BLOQUE DE CONTADORES INDUSTRIALES (DESKTOP) --- */
-.nosotros-stats {
-    display: flex !important;
-    justify-content: space-around !important;
-    align-items: center !important;
-    gap: 20px !important;
-    margin: 60px auto 40px auto !important;
-    padding: 35px 20px !important;
-    background-color: #161618 !important; /* Un gris ligeramente más claro que resalta */
-    border-radius: 8px !important;
-    border: 1px solid #2c2c2e !important;
-    max-width: 900px !important;
-}
 
-.stat-item {
-    text-align: center !important;
-}
-
-.stat-number {
-    display: block !important;
-    font-size: 2.8rem !important;
-    font-weight: 800 !important;
-    color: var(--primary-color) !important; /* Tu color magenta de marca */
-    line-height: 1 !important;
-    margin-bottom: 8px !important;
-}
-
-.stat-label {
-    display: block !important;
-    font-size: 0.9rem !important;
-    color: #a1a1a6 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
-    font-weight: 600 !important;
-}
-
+/* --- 2. ADAPTACIÓN PARA CELULARES (RESPONSIVE) --- */
 @media (max-width: 768px) {
-    /* --- 1. NAVBAR: Optimización de Espacio --- */
-    .navbar { padding: 0 5px !important; }
-    .logo { font-size: 0.9rem !important; margin-right: 2px !important; }
-    .nav-links { gap: 2px !important; }
-    .nav-btn { font-size: 0.6rem !important; padding: 4px 5px !important; }
-    .navbar .btn-cta { font-size: 0.6rem !important; padding: 5px 8px !important; margin-left: 2px !important; }
-
-    /* --- 2. HERO: Proporciones Reales y Legibilidad --- */
-    .hero {
-        height: 55vh !important; 
-        min-height: 380px !important; 
-        padding-top: 75px !important; 
-        padding-bottom: 30px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        background-size: cover !important; 
-        background-position: center center !important;
-        background-attachment: scroll !important; 
-    }
-    .hero h1 { font-size: 1.7rem !important; line-height: 1.2 !important; margin: 0 auto 15px auto !important; letter-spacing: -0.5px !important; }
-    .hero p { font-size: 0.95rem !important; line-height: 1.4 !important; margin: 0 auto 25px auto !important; max-width: 100% !important; }
-
-    /* --- 3. PANELES Y TARJETAS INFERIORES --- */
-    .servicios-grid, .materials-panels {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important; 
-        width: 100% !important;
-        max-width: 92% !important; 
-        margin: 20px auto !important; 
-        gap: 15px !important;
-        padding: 0 !important;
-    }
-    .panel, .material-card {
-        width: 100% !important;
-        max-width: 380px !important; 
-        margin: 0 0 5px 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    /* --- 4. SECCIÓN NOSOTROS (MÓVIL TOTALMENTE BLINDADO) --- */
     .nosotros-section {
         padding: 60px 20px !important; 
         box-sizing: border-box !important;
@@ -778,10 +729,10 @@ body {
         color: #a1a1a6 !important;
     }
 
-    /* ADAPTACIÓN DE LAS MÉTRICAS EN CELULARES */
+    /* Contadores en celular: Apilados y seguros */
     .nosotros-stats {
-        flex-direction: column !important; /* Apilado vertical ultra seguro */
-        gap: 35px !important; /* Espacio cómodo entre contadores */
+        flex-direction: column !important; 
+        gap: 35px !important; 
         padding: 30px 20px !important;
         margin: 40px auto 20px auto !important;
         width: 100% !important;
@@ -789,7 +740,7 @@ body {
     }
 
     .stat-number {
-        font-size: 2.3rem !important; /* Tamaño responsivo que no desborda */
+        font-size: 2.3rem !important; 
         margin-bottom: 4px !important;
     }
 
@@ -798,7 +749,6 @@ body {
         letter-spacing: 1px !important;
     }
 
-    /* CIERRE EDITORIAL */
     .nosotros-footer-text {
         margin-top: 40px !important;
         padding-top: 25px !important;
@@ -815,17 +765,5 @@ body {
         font-size: 1.05rem !important;
         text-align: center !important; 
         color: var(--primary-color) !important;
-        font-weight: 700 !important;
     }
-
-    /* --- 5. SECCIÓN WHATSAPP --- */
-    .whatsapp-container-pro {
-        width: 100% !important;
-        max-width: 92% !important;
-        margin: 30px auto !important;
-        padding: 40px 20px !important;
-        box-sizing: border-box !important;
-    }
-    .whatsapp-container-pro h2 { font-size: 1.5rem !important; }
-    .whatsapp-container-pro p { font-size: 0.9rem !important; }
 }
