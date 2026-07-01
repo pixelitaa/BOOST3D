@@ -574,6 +574,7 @@ body {
 /* Estilos de seguridad para títulos que antes eran genéricos */
 .nosotros-section .subtitle {
     display: block !important;
+    text-align: center !important;
     color: var(--primary-color) !important; /* CORREGIDO */
     font-size: 0.9rem !important;
     text-transform: uppercase !important;
