@@ -572,6 +572,8 @@ body {
 
 #nosotros .subtitle {
     display: block !important;
+        text-align: center !important;
+
     color: var(--primary-color) !important; 
     font-size: 0.9rem !important;
     text-transform: uppercase !important;
@@ -580,7 +582,8 @@ body {
     margin-bottom: 5px !important;
 }
 
-#nosotros h2 { color: #ffffff !important; font-size: 2.2rem !important; font-weight: 800 !important; margin: 0 0 30px 0 !important; }
+#nosotros h2 { color: #ffffff !important; font-size: 2.2rem !important; font-weight: 800 !important; margin: 0 0 30px 0 !important;     text-align: center !important;
+}
 
 #nosotros .nosotros-hook {
     font-size: 1.5rem !important;
