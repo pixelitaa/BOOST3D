@@ -556,50 +556,38 @@ body {
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
 
-//* ==========================================================================
-   NUEVA SECCIÓN NOSOTROS (ESTILO INDUSTRIAL PREMIUM)
+/* ==========================================================================
+   CSS SIMPLIFICADO: #NOSOTROS (ESCRITORIO + MÓVIL)
    ========================================================================== */
-.nosotros-section {
+
+/* --- ESTILOS BASE (PC) --- */
+#nosotros {
     padding: 100px 8% !important;
-    background-color: #0f0f10 !important; /* Fondo oscuro industrial */
+    background-color: #0f0f10 !important;
     color: #cbcbcb !important;
-    font-family: sans-serif; /* O la tipografía de tu web */
-}
-
-.nosotros-container {
-    max-width: 1100px !important;
-    margin: 0 auto !important;
-}
-
-/* Estilos de seguridad para títulos que antes eran genéricos */
-.nosotros-section .subtitle {
     display: block !important;
-    color: var(--primary-color) !important; /* CORREGIDO */
+}
+
+#nosotros .nosotros-container { max-width: 1100px !important; margin: 0 auto !important; }
+
+#nosotros .subtitle {
+    display: block !important;
+    color: var(--primary-color) !important; 
     font-size: 0.9rem !important;
-    text-align: center !important;
     text-transform: uppercase !important;
     letter-spacing: 2px !important;
     font-weight: 700 !important;
     margin-bottom: 5px !important;
 }
 
-.nosotros-section h2 {
-    color: #ffffff !important;
-    text-align: center !important;
-    font-size: 2.2rem !important;
-    font-weight: 800 !important;
-    margin-top: 0 !important;
-    margin-bottom: 30px !important;
-    letter-spacing: -1px !important;
-}
+#nosotros h2 { color: #ffffff !important; font-size: 2.2rem !important; font-weight: 800 !important; margin: 0 0 30px 0 !important; }
 
-/* El bloque destacado */
-.nosotros-hook {
-    font-size: 1.6rem !important;
+#nosotros .nosotros-hook {
+    font-size: 1.5rem !important;
     font-weight: 600 !important;
     color: #ffffff !important;
     text-align: center !important;
-    border-left: 4px solid var(--primary-color) !important; /* CORREGIDO */
+    border-left: 4px solid var(--primary-color) !important; 
     padding-left: 20px !important;
     margin: 40px auto !important;
     max-width: 900px !important;
@@ -607,208 +595,51 @@ body {
     font-style: italic !important;
 }
 
-/* Columnas */
-.nosotros-layout {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 50px !important;
-    margin-top: 50px !important;
-}
+#nosotros .nosotros-layout { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 50px !important; margin-top: 50px !important; }
+#nosotros .nosotros-col h3 { color: #ffffff !important; font-size: 1.3rem !important; margin-bottom: 20px !important; text-transform: uppercase !important; }
+#nosotros .nosotros-col p { font-size: 1.05rem !important; line-height: 1.6 !important; color: #a1a1a6 !important; margin-bottom: 20px !important; text-align: left !important; }
 
-.nosotros-col h3 {
-    color: #ffffff !important;
-    font-size: 1.3rem !important;
-    margin-bottom: 20px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-}
-
-.nosotros-col p {
-    font-size: 1.05rem !important;
-    line-height: 1.6 !important;
-    color: #a1a1a6 !important;
-    margin-bottom: 20px !important;
-    text-align: left !important;
-}
-
-.nosotros-col strong {
-    color: var(--primary-color) !important; /* CORREGIDO */
-}
-
-/* Cierre de la sección */
-.nosotros-footer-text {
-    margin-top: 50px !important;
-    padding-top: 30px !important;
-    border-top: 1px solid #2c2c2e !important;
+/* CONTENEDOR DE ESTADÍSTICAS SENCILLO */
+#nosotros .nosotros-stats {
+    display: flex !important;
+    justify-content: space-around !important;
+    gap: 20px !important;
+    margin: 50px auto !important;
+    padding: 30px !important;
+    background-color: #161618 !important; 
+    border-radius: 8px !important;
+    border: 1px solid #2c2c2e !important;
+    max-width: 700px !important;
     text-align: center !important;
-    max-width: 900px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
+#nosotros .stat-item strong { display: block !important; font-size: 3rem !important; color: var(--primary-color) !important; font-weight: 800 !important; }
+#nosotros .stat-item span { display: block !important; font-size: 0.95rem !important; color: #ffffff !important; text-transform: uppercase !important; letter-spacing: 1px !important; margin-top: 5px !important; }
 
-.nosotros-footer-text p {
-    font-size: 1.1rem !important;
-    line-height: 1.6 !important;
-    color: #ffffff !important;
-}
+#nosotros .nosotros-footer-text { margin-top: 50px !important; padding-top: 30px !important; border-top: 1px solid #2c2c2e !important; text-align: center !important; }
+#nosotros .nosotros-footer-text p { font-size: 1.1rem !important; line-height: 1.6 !important; color: #ffffff !important; }
+#nosotros .highlight-final { font-weight: 700 !important; color: var(--primary-color) !important; margin-top: 20px !important; font-size: 1.2rem !important; }
 
-.highlight-final {
-    font-weight: 700 !important;
-    color: var(--primary-color) !important; /* CORREGIDO */
-    margin-top: 20px !important;
-    font-size: 1.2rem !important;
-}
-
+/* --- ADAPTACIÓN MÓVIL SEGURA --- */
 @media (max-width: 768px) {
-    /* --- 1. NAVBAR: Optimización de Espacio --- */
-    .navbar {
-        padding: 0 5px !important;
-    }
+    #nosotros { padding: 60px 20px !important; box-sizing: border-box !important; }
+    #nosotros h2 { font-size: 1.6rem !important; }
+    #nosotros .nosotros-hook { font-size: 1.15rem !important; text-align: left !important; margin: 25px 0 !important; }
+    #nosotros .nosotros-layout { display: flex !important; flex-direction: column !important; gap: 25px !important; }
+    #nosotros .nosotros-col h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; }
+    #nosotros .nosotros-col p { font-size: 0.95rem !important; line-height: 1.5 !important; }
 
-    .logo {
-        font-size: 0.9rem !important;
-        margin-right: 2px !important;
-    }
-
-    .nav-links {
-        gap: 2px !important;
-    }
-
-    .nav-btn {
-        font-size: 0.6rem !important;
-        padding: 4px 5px !important;
-    }
-
-    .navbar .btn-cta {
-        font-size: 0.6rem !important;
-        padding: 5px 8px !important;
-        margin-left: 2px !important;
-    }
-
-    /* --- 2. HERO: Proporciones Reales y Legibilidad --- */
-    .hero {
-        height: 55vh !important; 
-        min-height: 380px !important; 
-        padding-top: 75px !important; 
-        padding-bottom: 30px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-        background-size: cover !important; 
-        background-position: center center !important;
-        background-attachment: scroll !important; 
-    }
-
-    .hero h1 {
-        font-size: 1.7rem !important; 
-        line-height: 1.2 !important;
-        margin: 0 auto 15px auto !important;
-        letter-spacing: -0.5px !important;
-    }
-
-    .hero p {
-        font-size: 0.95rem !important; 
-        line-height: 1.4 !important;
-        margin: 0 auto 25px auto !important;
-        max-width: 100% !important;
-    }
-
-    /* --- 3. PANELES Y TARJETAS (RECONSTRUIDO Y CORREGIDO) --- */
-    .servicios-grid, 
-    .materials-panels {
-        display: flex !important;
+    /* Forzar que las estadísticas se apilen verticalmente en celulares de forma limpia */
+    #nosotros .nosotros-stats {
         flex-direction: column !important;
-        align-items: center !important; 
-        width: 100% !important;
-        max-width: 92% !important; 
-        margin: 20px auto !important; 
-        gap: 15px !important;
-        padding: 0 !important;
-    }
-
-    /* Aquí solucionamos el corte que tenía tu archivo original */
-    .panel, 
-    .material-card {
-        width: 100% !important;
-        max-width: 380px !important; 
-        margin: 0 0 5px 0 !important;
-        box-sizing: border-box !important;
-    }
-
-    /* --- 4. NUEVA SECCIÓN NOSOTROS (ADAPTACIÓN MÓVIL ESTÉTICA) --- */
-    .nosotros-section {
-        padding: 60px 20px !important; 
-        box-sizing: border-box !important;
-        background-color: #0f0f10 !important; /* Mantiene el fondo oscuro industrial */
-    }
-
-    .nosotros-section h2 {
-        font-size: 1.6rem !important;
-        margin-bottom: 20px !important;
-        color: #ffffff !important;
-    }
-
-    .nosotros-hook {
-        font-size: 1.2rem !important;
-        padding-left: 15px !important;
-        margin: 25px 0 !important;
-        text-align: left !important; 
-        border-left: 4px solid var(--primary-color) !important; /* Resonancia con tu marca */
-        color: #ffffff !important;
-    }
-
-    .nosotros-layout {
-        display: flex !important;
-        flex-direction: column !important; /* Apilado limpio en vertical */
         gap: 30px !important;
-        margin-top: 30px !important;
-    }
-
-    .nosotros-col h3 {
-        font-size: 1.1rem !important;
-        margin-bottom: 10px !important;
-        color: #ffffff !important;
-    }
-
-    .nosotros-col p {
-        font-size: 0.95rem !important;
-        line-height: 1.5 !important;
-        text-align: left !important; /* Evita espacios raros entre palabras en móvil */
-        color: #a1a1a6 !important;
-    }
-
-    .nosotros-footer-text {
-        margin-top: 30px !important;
-        padding-top: 20px !important;
-        border-top: 1px solid #2c2c2e !important;
-    }
-
-    .nosotros-footer-text p {
-        font-size: 0.95rem !important;
-        text-align: left !important;
-        color: #ffffff !important;
-    }
-
-    .highlight-final {
-        font-size: 1.05rem !important;
-        text-align: center !important; 
-        color: var(--primary-color) !important;
-        font-weight: 700 !important;
-    }
-
-    /* --- 5. SECCIÓN WHATSAPP --- */
-    .whatsapp-container-pro {
+        padding: 25px 15px !important;
         width: 100% !important;
-        max-width: 92% !important;
-        margin: 30px auto !important;
-        padding: 40px 20px !important;
         box-sizing: border-box !important;
     }
+    #nosotros .stat-item strong { font-size: 2.5rem !important; }
+    #nosotros .stat-item span { font-size: 0.85rem !important; }
 
-    .whatsapp-container-pro h2 {
-        font-size: 1.5rem !important;
-    }
-    
-    .whatsapp-container-pro p {
-        font-size: 0.9rem !important;
-    }
+    #nosotros .nosotros-footer-text { margin-top: 35px !important; padding-top: 20px !important; }
+    #nosotros .nosotros-footer-text p { font-size: 0.95rem !important; text-align: left !important; }
+    #nosotros .highlight-final { font-size: 1.05rem !important; text-align: center !important; }
 }
