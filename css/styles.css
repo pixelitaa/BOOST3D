@@ -556,18 +556,24 @@ body {
     box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
 }
 
-.nosotros-section {
+/* ==========================================================================
+   SOLUCIÓN ANTICONFLICTO: #NOSOTROS (ESCRITORIO + MÓVIL)
+   ========================================================================== */
+
+/* --- VERSIÓN ESCRITORIO --- */
+#nosotros {
     padding: 100px 8% !important;
     background-color: #0f0f10 !important; /* Fondo oscuro industrial */
     color: #cbcbcb !important;
+    display: block !important;
 }
 
-.nosotros-container {
+#nosotros .nosotros-container {
     max-width: 1100px !important;
     margin: 0 auto !important;
 }
 
-.nosotros-section .subtitle {
+#nosotros .subtitle {
     display: block !important;
     color: var(--primary-color) !important; 
     font-size: 0.9rem !important;
@@ -577,7 +583,7 @@ body {
     margin-bottom: 5px !important;
 }
 
-.nosotros-section h2 {
+#nosotros h2 {
     color: #ffffff !important;
     font-size: 2.2rem !important;
     font-weight: 800 !important;
@@ -586,7 +592,7 @@ body {
     letter-spacing: -1px !important;
 }
 
-.nosotros-hook {
+#nosotros .nosotros-hook {
     font-size: 1.6rem !important;
     font-weight: 600 !important;
     color: #ffffff !important;
@@ -599,14 +605,14 @@ body {
     font-style: italic !important;
 }
 
-.nosotros-layout {
+#nosotros .nosotros-layout {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 50px !important;
     margin-top: 50px !important;
 }
 
-.nosotros-col h3 {
+#nosotros .nosotros-col h3 {
     color: #ffffff !important;
     font-size: 1.3rem !important;
     margin-bottom: 20px !important;
@@ -614,7 +620,7 @@ body {
     letter-spacing: 1px !important;
 }
 
-.nosotros-col p {
+#nosotros .nosotros-col p {
     font-size: 1.05rem !important;
     line-height: 1.6 !important;
     color: #a1a1a6 !important;
@@ -622,12 +628,7 @@ body {
     text-align: left !important;
 }
 
-.nosotros-col strong {
-    color: var(--primary-color) !important; 
-}
-
-/* Bloque de Métricas / Contadores (PC) */
-.nosotros-stats {
+#nosotros .nosotros-stats {
     display: flex !important;
     justify-content: space-around !important;
     align-items: center !important;
@@ -637,14 +638,9 @@ body {
     background-color: #161618 !important; 
     border-radius: 8px !important;
     border: 1px solid #2c2c2e !important;
-    max-width: 900px !important;
 }
 
-.stat-item {
-    text-align: center !important;
-}
-
-.stat-number {
+#nosotros .stat-number {
     display: block !important;
     font-size: 2.8rem !important;
     font-weight: 800 !important;
@@ -653,7 +649,7 @@ body {
     margin-bottom: 8px !important;
 }
 
-.stat-label {
+#nosotros .stat-label {
     display: block !important;
     font-size: 0.9rem !important;
     color: #a1a1a6 !important;
@@ -662,23 +658,20 @@ body {
     font-weight: 600 !important;
 }
 
-.nosotros-footer-text {
+#nosotros .nosotros-footer-text {
     margin-top: 50px !important;
     padding-top: 30px !important;
     border-top: 1px solid #2c2c2e !important;
     text-align: center !important;
-    max-width: 900px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
 }
 
-.nosotros-footer-text p {
+#nosotros .nosotros-footer-text p {
     font-size: 1.1rem !important;
     line-height: 1.6 !important;
     color: #ffffff !important;
 }
 
-.highlight-final {
+#nosotros .highlight-final {
     font-weight: 700 !important;
     color: var(--primary-color) !important; 
     margin-top: 20px !important;
@@ -686,84 +679,67 @@ body {
 }
 
 
-/* --- 2. ADAPTACIÓN PARA CELULARES (RESPONSIVE) --- */
+/* --- VERSIÓN CELULAR (@MEDIA) --- */
 @media (max-width: 768px) {
-    .nosotros-section {
+    #nosotros {
         padding: 60px 20px !important; 
         box-sizing: border-box !important;
-        background-color: #0f0f10 !important;
     }
 
-    .nosotros-section h2 {
+    #nosotros h2 {
         font-size: 1.6rem !important;
         margin-bottom: 20px !important;
-        color: #ffffff !important;
     }
 
-    .nosotros-hook {
+    #nosotros .nosotros-hook {
         font-size: 1.2rem !important;
         padding-left: 15px !important;
         margin: 25px 0 !important;
         text-align: left !important; 
-        border-left: 4px solid var(--primary-color) !important;
-        color: #ffffff !important;
     }
 
-    .nosotros-layout {
+    #nosotros .nosotros-layout {
         display: flex !important;
         flex-direction: column !important; 
         gap: 30px !important;
         margin-top: 30px !important;
     }
 
-    .nosotros-col h3 {
+    #nosotros .nosotros-col h3 {
         font-size: 1.1rem !important;
         margin-bottom: 10px !important;
-        color: #ffffff !important;
     }
 
-    .nosotros-col p {
+    #nosotros .nosotros-col p {
         font-size: 0.95rem !important;
         line-height: 1.5 !important;
-        text-align: left !important; 
-        color: #a1a1a6 !important;
     }
 
-    /* Contadores en celular: Apilados y seguros */
-    .nosotros-stats {
+    #nosotros .nosotros-stats {
         flex-direction: column !important; 
         gap: 35px !important; 
         padding: 30px 20px !important;
         margin: 40px auto 20px auto !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
     }
 
-    .stat-number {
+    #nosotros .stat-number {
         font-size: 2.3rem !important; 
-        margin-bottom: 4px !important;
     }
 
-    .stat-label {
+    #nosotros .stat-label {
         font-size: 0.85rem !important;
-        letter-spacing: 1px !important;
     }
 
-    .nosotros-footer-text {
+    #nosotros .nosotros-footer-text {
         margin-top: 40px !important;
         padding-top: 25px !important;
-        border-top: 1px solid #2c2c2e !important;
     }
 
-    .nosotros-footer-text p {
+    #nosotros .nosotros-footer-text p {
         font-size: 0.95rem !important;
-        text-align: left !important;
-        color: #ffffff !important;
     }
 
-    .highlight-final {
+    #nosotros .highlight-final {
         font-size: 1.05rem !important;
-        text-align: center !important; 
-        color: var(--primary-color) !important;
     }
 }
