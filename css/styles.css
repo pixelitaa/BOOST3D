@@ -628,7 +628,7 @@ body {
     #nosotros h2 { font-size: 1.6rem !important; }
     #nosotros .nosotros-hook { font-size: 1.15rem !important; text-align: left !important; margin: 25px 0 !important; color: var(--primary)}
     #nosotros .nosotros-layout { display: flex !important; flex-direction: column !important; gap: 25px !important; }
-    #nosotros .nosotros-col h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; }
+    #nosotros .nosotros-col h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; color: var(--primary) }
     #nosotros .nosotros-col p { font-size: 0.95rem !important; line-height: 1.5 !important; }
 
     /* Forzar que las estadísticas se apilen verticalmente en celulares de forma limpia */
