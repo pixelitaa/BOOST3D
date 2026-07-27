@@ -626,9 +626,9 @@ body {
 @media (max-width: 768px) {
     #nosotros { padding: 60px 20px !important; box-sizing: border-box !important; }
     #nosotros h2 { font-size: 1.6rem !important; }
-    #nosotros .nosotros-hook { font-size: 1.15rem !important; text-align: left !important; margin: 25px 0 !important; color: var(--primary)}
+    #nosotros .nosotros-hook { font-size: 1.15rem !important; text-align: left !important; margin: 25px 0 !important; color: #fe019a}
     #nosotros .nosotros-layout { display: flex !important; flex-direction: column !important; gap: 25px !important; }
-    #nosotros .nosotros-col h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; color: var(--primary) }
+    #nosotros .nosotros-col h3 { font-size: 1.1rem !important; margin-bottom: 10px !important; color:#fe019a }
     #nosotros .nosotros-col p { font-size: 0.95rem !important; line-height: 1.5 !important; }
 
     /* Forzar que las estadísticas se apilen verticalmente en celulares de forma limpia */
