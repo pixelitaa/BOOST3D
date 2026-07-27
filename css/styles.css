@@ -595,12 +595,12 @@ body {
     margin: 40px auto !important;
     max-width: 900px !important;
     line-height: 1.4 !important;
-    font-style: italic !important;
+    font-style: bold !important;
 }
 
 #nosotros .nosotros-layout { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 50px !important; margin-top: 50px !important; }
 #nosotros .nosotros-col h3 { color: #ffffff !important; font-size: 1.3rem !important; margin-bottom: 20px !important; text-transform: uppercase !important; }
-#nosotros .nosotros-col p { font-size: 1.05rem !important; line-height: 1.6 !important; color: #a1a1a6 !important; margin-bottom: 20px !important; text-align: left !important; }
+#nosotros .nosotros-col p { font-size: 1.05rem !important; line-height: 1.6 !important; color: #ffffff !important; margin-bottom: 20px !important; text-align: left !important; }
 
 /* CONTENEDOR DE ESTADÍSTICAS SENCILLO */
 #nosotros .nosotros-stats {
